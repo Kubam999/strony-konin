@@ -42,7 +42,7 @@ td:last-child{font-weight:700;color:#0b3d6e;white-space:nowrap}
 tbody tr:nth-child(even){background:#f2f4f7}
 .steps{padding-left:22px;max-width:62ch;display:grid;gap:14px;font-size:1.05rem}
 .about{display:grid;gap:28px}
-.about img{max-width:420px}
+.about img{max-width:min(420px,100%)}
 .contact{display:grid;gap:36px}
 form{display:grid;gap:14px}
 label{display:grid;gap:4px;font-weight:500}
