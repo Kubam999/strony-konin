@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Wycena fotowoltaiki i pompy ciepła w 24 h, Enerkon Instalacje Kazimierz Biskupi</title>
+<meta name="description" content="Formularz wyceny Enerkon Instalacje z Kazimierza Biskupiego: typ dachu, pokrycie, roczne zużycie prądu i orientacyjna moc instalacji. Odpowiedź z ofertą w 24 godziny.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Manrope:wght@500;600;700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="style.css">
+
+</head>
+<body>
+<header class="site-header">
+  <div class="wrap header-inner">
+    <a class="logo" href="index.html"><svg viewBox="0 0 36 36" aria-hidden="true" focusable="false"><rect x="2" y="14" width="32" height="18" rx="2" fill="#23272b"/><path d="M4 14 18 4l14 10" fill="none" stroke="#23272b" stroke-width="3" stroke-linejoin="round"/><rect x="7" y="18" width="8" height="5" fill="#8bc34a"/><rect x="17" y="18" width="8" height="5" fill="#8bc34a"/><rect x="7" y="25" width="8" height="5" fill="#8bc34a"/><rect x="17" y="25" width="8" height="5" fill="#8bc34a"/></svg><span>Enerkon Instalacje<small>Kazimierz Biskupi, powiat koniński</small></span></a>
+    <button class="nav-toggle" aria-expanded="false" aria-controls="menu" type="button"><svg viewBox="0 0 20 20" aria-hidden="true"><path d="M2 4h16M2 10h16M2 16h16" stroke="currentColor" stroke-width="2.4" stroke-linecap="round"/></svg>Menu</button>
+    <nav class="site-nav" id="menu" aria-label="Główne menu"><ul><li><a href="index.html">Start</a></li><li><a href="oferta.html">Oferta</a></li><li><a href="dotacje.html">Dotacje</a></li><li><a href="realizacje.html">Realizacje</a></li><li><a href="wycena.html" aria-current="page">Wycena</a></li><li class="nav-cta"><a href="wycena.html">Wycena w 24 h</a></li></ul></nav>
+  </div>
+</header>
+<main>
+<section class="page-hero">
+  <div class="wrap">
+    <span class="label">Wycena</span>
+    <h1>Wycena w 24 godziny</h1>
+    <p class="lead">Pięć pól i numer telefonu. Po wpisaniu rocznego zużycia prądu zobaczysz od razu orientacyjną moc instalacji. Oddzwania Marcin Walczak albo Katarzyna Woźniak, od poniedziałku do piątku między 8:00 a 16:00.</p>
+  </div>
+</section>
+<section aria-labelledby="form-h">
+  <div class="wrap split rev">
+    <form action="https://api.web3forms.com/submit" method="POST" id="wycena-form" aria-labelledby="form-h">
+      <h2 id="form-h" style="font-size:1.3rem">Dane do wyceny</h2>
+      <input type="hidden" name="access_key" value="TWOJ_KLUCZ">
+      <input type="hidden" name="subject" value="Prośba o wycenę ze strony Enerkon Instalacje">
+      <div class="form-grid">
+        <div class="field">
+          <label for="dach">Typ dachu</label>
+          <select id="dach" name="typ_dachu" required>
+            <option value="">Wybierz</option>
+            <option value="dwuspadowy">Dwuspadowy</option>
+            <option value="plaski">Płaski</option>
+            <option value="czteropolaciowy">Czteropołaciowy</option>
+            <option value="grunt">Instalacja na gruncie</option>
+          </select>
+        </div>
+        <div class="field">
+          <label for="pokrycie">Pokrycie dachu</label>
+          <select id="pokrycie" name="pokrycie" required>
+            <option value="">Wybierz</option>
+            <option value="blacha">Blacha</option>
+            <option value="dachowka">Dachówka</option>
+            <option value="papa">Papa</option>
+          </select>
+        </div>
+        <div class="field full">
+          <label for="zuzycie">Roczne zużycie prądu (kWh)</label>
+          <input id="zuzycie" name="zuzycie_kwh" type="number" min="500" max="100000" step="100" inputmode="numeric" placeholder="np. 4500" required>
+          <p class="hint">Znajdziesz je na rocznym rozliczeniu od sprzedawcy prądu. Jeśli planujesz pompę ciepła, wpisz obecne zużycie, resztę doliczymy w ofercie.</p>
+        </div>
+        <div class="estimate full" id="estymata" hidden aria-live="polite">
+          <strong id="estymata-moc"></strong>
+          <p>Orientacyjna moc instalacji. To szacunek z przelicznika 1,2 kWp na każde 1000 kWh zużycia, zaokrąglony do 0,5 kWp. Ostateczną moc dobieramy po sprawdzeniu dachu i taryfy.</p>
+        </div>
+        <fieldset class="full">
+          <legend>Co Cię interesuje</legend>
+          <div class="checks">
+            <label class="check"><input type="checkbox" name="zainteresowanie[]" value="fotowoltaika" checked><span>Fotowoltaika</span></label>
+            <label class="check"><input type="checkbox" name="zainteresowanie[]" value="pompa ciepla"><span>Pompa ciepła</span></label>
+            <label class="check"><input type="checkbox" name="zainteresowanie[]" value="magazyn energii"><span>Magazyn energii</span></label>
+            <label class="check"><input type="checkbox" name="zainteresowanie[]" value="klimatyzacja"><span>Klimatyzacja</span></label>
+          </div>
+        </fieldset>
+        <div class="field full">
+          <label for="telefon">Telefon</label>
+          <input id="telefon" name="telefon" type="tel" autocomplete="tel" placeholder="np. 500 000 000" required>
+        </div>
+        <label class="check full"><input type="checkbox" name="zgoda" value="tak" required><span>Zgadzam się na kontakt telefoniczny w sprawie wyceny. Dane przetwarzamy zgodnie z <a href="../../polityka-prywatnosci.html">polityką prywatności</a>.</span></label>
+      </div>
+      <div><button class="btn btn-primary" type="submit">Poproś o wycenę</button></div>
+    </form>
+    <aside>
+      <h2 style="font-size:1.3rem">Co dzieje się po wysłaniu</h2>
+      <ol class="steps" style="margin-bottom:2rem">
+        <li><span style="color:var(--green-dark)">1</span><p>W ciągu 24 godzin dzwonimy z wstępną ofertą: moc, liczba modułów, propozycja falownika i orientacyjna cena.</p></li>
+        <li><span style="color:var(--green-dark)">2</span><p>Umawiamy oględziny dachu lub kotłowni, zwykle w ciągu tygodnia. Mierzymy, fotografujemy, sprawdzamy rozdzielnię.</p></li>
+        <li><span style="color:var(--green-dark)">3</span><p>Dostajesz ofertę na piśmie z kartami produktów, które możesz od razu dołączyć do wniosku o dotację.</p></li>
+      </ol>
+      <p><strong>Wolisz zadzwonić?</strong><br><a href="tel:+48632470090" style="font-size:1.4rem;font-weight:800;color:var(--ink);text-decoration:none">63 247 00 90</a></p>
+      <p class="hint">ul. Konińska 27, 62-530 Kazimierz Biskupi. Biuro czynne od poniedziałku do piątku 7:30 do 16:00.</p>
+    </aside>
+  </div>
+</section>
+</main>
+<footer class="site-footer">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <h2>Enerkon Instalacje</h2>
+        <p>Montaż fotowoltaiki, pomp ciepła, klimatyzacji i magazynów energii. Działamy od 2016 roku, ekipa 6 monterów z certyfikatem UDT dla instalatorów OZE.</p>
+        <p>NIP 665 000 00 00 (fikcyjny)</p>
+      </div>
+      <div>
+        <h2>Kontakt</h2>
+        <p>ul. Konińska 27, 62-530 Kazimierz Biskupi</p>
+        <p><a href="tel:+48632470090">63 247 00 90</a></p>
+        <p><a href="mailto:biuro@enerkon-instalacje.pl">biuro@enerkon-instalacje.pl</a></p>
+      </div>
+      <div>
+        <h2>Godziny biura</h2>
+        <p>Poniedziałek: 7:30 do 16:00</p>
+        <p>Wtorek, środa, czwartek, piątek: 7:30 do 16:00</p>
+        <p>Sobota: 8:00 do 12:00 (tylko telefonicznie)</p>
+        <p>Ekipy montażowe wyjeżdżają od 6:30.</p>
+      </div>
+      <div>
+        <h2>Na stronie</h2>
+        <p><a href="oferta.html">Oferta</a></p>
+        <p><a href="dotacje.html">Dotacje</a></p>
+        <p><a href="realizacje.html">Realizacje</a></p>
+        <p><a href="wycena.html">Wycena</a></p>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Enerkon Instalacje</span>
+      <a href="../../polityka-prywatnosci.html">Polityka prywatności</a>
+      <a href="../../index.html">Strona demo przygotowana przez Studio Konin</a>
+    </div>
+  </div>
+</footer>
+<script src="script.js"></script>
+</body>
+</html>
