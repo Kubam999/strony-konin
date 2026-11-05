@@ -44,8 +44,10 @@ Hosting na Cloudflare Pages jest bezpłatny. Domenę podpina się w zakładce Cu
 | `warsztat-detailing` | studio auto detailingu, Konin | Wizytówka | Oswald + Roboto |
 | `firma-remontowa` | firma remontowa, Golina | Wizytówka | Work Sans |
 | `meble-na-wymiar` | stolarnia mebli na wymiar, Stare Miasto | Wizytówka | Cormorant Garamond + Karla |
+| `biuro-rachunkowe` | biuro rachunkowe, Konin | Wizytówka | Figtree |
+| `kawiarnia` | kawiarnia na starówce, Konin | Wizytówka | Bricolage Grotesque + Atkinson Hyperlegible |
 
-Nie powstały jeszcze (zaplanowane w kolejności): biuro-rachunkowe, restauracja-sala-weselna, salon-beauty-szkolenia, kawiarnia, instalator-hydraulik, psychoterapia.
+Nie powstały jeszcze (zaplanowane w kolejności): instalator-hydraulik, psychoterapia.
 
 Wszystkie firmy w demo są fikcyjne. Adresy są wymyślone przy prawdziwych ulicach Konina i okolicznych miejscowości, telefony w formacie 63 000 00 00 lub 500 000 000.
 
