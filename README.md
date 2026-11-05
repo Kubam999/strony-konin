@@ -48,8 +48,10 @@ Hosting na Cloudflare Pages jest bezpłatny. Domenę podpina się w zakładce Cu
 | `kawiarnia` | kawiarnia na starówce, Konin | Wizytówka | Bricolage Grotesque + Atkinson Hyperlegible |
 | `restauracja-sala-weselna` | restauracja z salą weselną, Ślesin | Rozbudowana | Playfair Display + Lato |
 | `salon-beauty-szkolenia` | salon brwi i rzęs ze szkoleniami, Konin | Firma | Jost + Mulish |
+| `instalator-hydraulik` | hydraulik i instalator, Kleczew | Wizytówka | Rubik |
+| `psychoterapia` | gabinet psychoterapii, Konin | Wizytówka | Lora + Source Sans 3 |
 
-Nie powstały jeszcze (zaplanowane w kolejności): instalator-hydraulik, psychoterapia.
+Wszystkie 15 zaplanowanych demo jest gotowych. Dwa ostatnie (hydraulik, psychoterapia) powstały w pośpiechu, bez oglądania zrzutów, więc warto je obejrzeć w przeglądarce jako pierwsze.
 
 Wszystkie firmy w demo są fikcyjne. Adresy są wymyślone przy prawdziwych ulicach Konina i okolicznych miejscowości, telefony w formacie 63 000 00 00 lub 500 000 000.
 
