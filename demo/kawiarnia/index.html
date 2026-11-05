@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="pl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Kawiarnia Pod Zegarem, Konin, Stare Miasto, ul. Wiosny Ludów</title>
+  <meta name="description" content="Kawiarnia Pod Zegarem w Koninie, ul. Wiosny Ludów 14 na starówce. Kawa z poznańskiej palarni, własne ciasta, śniadania do 12:00, lody rzemieślnicze latem, koncerty i planszówki. Pon-pt 7:30-19:00.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Atkinson+Hyperlegible:ital,wght@0,400;0,700;1,400&family=Bricolage+Grotesque:opsz,wght@12..96,700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "CafeOrCoffeeShop",
+    "name": "Kawiarnia Pod Zegarem",
+    "description": "Kawiarnia na Starym Mieście w Koninie: kawa z poznańskiej palarni, własne ciasta, śniadania, lody rzemieślnicze, wydarzenia.",
+    "url": "https://example.pl/demo/kawiarnia/",
+    "telephone": "+48630000170",
+    "email": "czesc@podzegarem.konin.pl",
+    "servesCuisine": ["Kawa", "Ciasta", "Śniadania", "Lody rzemieślnicze"],
+    "priceRange": "zł",
+    "foundingDate": "2021",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "ul. Wiosny Ludów 14",
+      "addressLocality": "Konin",
+      "postalCode": "62-500",
+      "addressCountry": "PL"
+    },
+    "geo": {"@type": "GeoCoordinates", "latitude": 52.2186, "longitude": 18.2497},
+    "openingHoursSpecification": [
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": ["Monday","Tuesday","Wednesday","Thursday","Friday"], "opens": "07:30", "closes": "19:00"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Saturday", "opens": "09:00", "closes": "20:00"},
+      {"@type": "OpeningHoursSpecification", "dayOfWeek": "Sunday", "opens": "10:00", "closes": "18:00"}
+    ],
+    "acceptsReservations": "True",
+    "menu": "https://example.pl/demo/kawiarnia/#menu"
+  }
+  </script>
+</head>
+<body>
+  <a class="skip" href="#main">Przejdź do treści</a>
+
+  <header class="top">
+    <div class="wrap top__row">
+      <a class="logo" href="#top" aria-label="Kawiarnia Pod Zegarem, strona główna">
+        <svg width="34" height="34" viewBox="0 0 34 34" aria-hidden="true"><circle cx="17" cy="17" r="15" fill="none" stroke="currentColor" stroke-width="2.4"/><path d="M17 8v9l6 4" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/><circle cx="17" cy="17" r="1.6" fill="#d4a017"/></svg>
+        <span>Pod Zegarem</span>
+      </a>
+      <button class="burger" type="button" aria-expanded="false" aria-controls="menu-glowne">
+        <span class="burger__bar"></span><span class="burger__bar"></span><span class="burger__bar"></span>
+        <span class="sr-only">Menu</span>
+      </button>
+      <nav id="menu-glowne" class="nav" aria-label="Nawigacja główna">
+        <a href="#o-nas">O nas</a>
+        <a href="#menu">Menu</a>
+        <a href="#wydarzenia">Wydarzenia</a>
+        <a href="#galeria">Galeria</a>
+        <a href="#dojazd">Dojazd</a>
+        <a href="#kontakt">Kontakt</a>
+        <a class="nav__tel" href="tel:+48630000170">63 000 01 70</a>
+      </nav>
+    </div>
+  </header>
+
+  <main id="main">
+    <section id="top" class="hero" aria-labelledby="hero-h">
+      <div class="wrap hero__grid">
+        <div class="hero__text">
+          <h1 id="hero-h">Kawa z Poznania,<br>ciasto z naszej kuchni.</h1>
+          <p>Kawiarnia na starówce w Koninie, dwa kroki od ratusza i Słupa Milowego. Od 2021 roku parzymy ziarno z palarni przy Rynku Jeżyckim, pieczemy sernik na kruchym spodzie według przepisu babci Marty i gramy winyle, których nikt nie wybiera z playlisty.</p>
+        </div>
+        <aside class="hero__hours" aria-label="Godziny otwarcia">
+          <p class="hero__hours-label" id="dzis-status">Dziś otwarte</p>
+          <p class="hero__hours-big" id="dzis-godziny">7:30 do 19:00</p>
+          <ul class="hero__hours-list">
+            <li><span>pon - pt</span><span>7:30 - 19:00</span></li>
+            <li><span>sobota</span><span>9:00 - 20:00</span></li>
+            <li><span>niedziela</span><span>10:00 - 18:00</span></li>
+          </ul>
+        </aside>
+      </div>
+      <img class="hero__img" src="https://picsum.photos/seed/kawiarnia-hero/1600/700" width="1600" height="700" alt="Wnętrze kawiarni: drewniane stoliki przy oknie wychodzącym na brukowaną uliczkę starówki">
+    </section>
+
+    <section id="o-nas" class="about" aria-labelledby="onas-h">
+      <div class="wrap about__grid">
+        <div class="about__col">
+          <h2 id="onas-h">Kto stoi za barem</h2>
+          <p>Kawiarnię prowadzimy we dwoje: Marta Jankowiak i Tomasz Wieczorek. Marta przez osiem lat pracowała w cukierni w Kole, Tomasz był baristą w Poznaniu, zanim wrócił do Konina. Lokal przy Wiosny Ludów 14 wynajęliśmy jesienią 2021 roku, kiedy po poprzednim najemcy został tylko stary zegar ścienny nad barem. Zegar wisi do dziś, chodzi równo i stąd nazwa.</p>
+          <p>Ziarno kupujemy w palarni Jeżyce Roast w Poznaniu, co dwa tygodnie, w worach po 5 kg. Na przelewy mamy Etiopię Guji, do mleka blend Brazylia i Kolumbia. Ciasta pieczemy codziennie rano od 6:00, więc o 7:30 sernik jest jeszcze ciepły.</p>
+        </div>
+        <ul class="about__facts">
+          <li><strong>22 miejsca</strong> w środku i 12 na podwórku od maja do października</li>
+          <li><strong>Mleko owsiane</strong> bez dopłaty, mleko od rolnika z Kazimierza Biskupiego</li>
+          <li><strong>Winyle</strong> z półki za barem, można poprosić o konkretną płytę</li>
+          <li><strong>Psy</strong> mile widziane, miska z wodą stoi przy wejściu</li>
+        </ul>
+      </div>
+    </section>
+
+    <section id="menu" class="menu" aria-labelledby="menu-h">
+      <div class="wrap">
+        <div class="menu__head">
+          <h2 id="menu-h">Menu</h2>
+          <p>Ceny w złotych. Kawę robimy też na wynos, do własnego kubka 1 zł taniej. Śniadania wydajemy do 12:00.</p>
+        </div>
+        <div class="menu__cols">
+          <div class="menu__group">
+            <h3>Kawa</h3>
+            <ul class="dots">
+              <li><span class="dots__name">Espresso</span><span class="dots__price">9</span></li>
+              <li><span class="dots__name">Espresso doppio</span><span class="dots__price">12</span></li>
+              <li><span class="dots__name">Cappuccino</span><span class="dots__price">14</span></li>
+              <li><span class="dots__name">Flat white</span><span class="dots__price">15</span></li>
+              <li><span class="dots__name">Przelew V60, Etiopia Guji</span><span class="dots__price">17</span></li>
+              <li><span class="dots__name">Cold brew, 300 ml</span><span class="dots__price">16</span></li>
+            </ul>
+            <h3>Herbaty</h3>
+            <ul class="dots">
+              <li><span class="dots__name">Czarna Assam, dzbanek 400 ml</span><span class="dots__price">13</span></li>
+              <li><span class="dots__name">Zielona Sencha</span><span class="dots__price">14</span></li>
+              <li><span class="dots__name">Rooibos z pomarańczą</span><span class="dots__price">13</span></li>
+              <li><span class="dots__name">Herbata zimowa z imbirem i miodem</span><span class="dots__price">16</span></li>
+            </ul>
+          </div>
+          <div class="menu__group">
+            <h3>Ciasta</h3>
+            <ul class="dots">
+              <li><span class="dots__name">Sernik na kruchym spodzie</span><span class="dots__price">18</span></li>
+              <li><span class="dots__name">Tarta sezonowa (teraz: gruszka z kardamonem)</span><span class="dots__price">19</span></li>
+              <li><span class="dots__name">Drożdżówka z kruszonką</span><span class="dots__price">9</span></li>
+              <li><span class="dots__name">Brownie z solą morską</span><span class="dots__price">16</span></li>
+            </ul>
+            <h3>Śniadania <small>do 12:00</small></h3>
+            <ul class="dots">
+              <li><span class="dots__name">Jajecznica na maśle z 3 jaj, pieczywo z piekarni na Kolskiej</span><span class="dots__price">22</span></li>
+              <li><span class="dots__name">Owsianka na mleku z jabłkiem i orzechami</span><span class="dots__price">18</span></li>
+              <li><span class="dots__name">Kanapka z twarogiem i rzodkiewką</span><span class="dots__price">15</span></li>
+            </ul>
+            <h3>Lody rzemieślnicze <small>maj - wrzesień</small></h3>
+            <ul class="dots">
+              <li><span class="dots__name">Gałka, smaki tygodnia na tablicy</span><span class="dots__price">7</span></li>
+              <li><span class="dots__name">Affogato: gałka wanilii i espresso</span><span class="dots__price">15</span></li>
+            </ul>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section id="wydarzenia" class="events" aria-labelledby="wyd-h">
+      <div class="wrap">
+        <h2 id="wyd-h">Najbliższe wieczory</h2>
+        <p class="events__intro">Cztery razy w miesiącu zostajemy po zamknięciu. Wstęp wolny, jeśli nie napisano inaczej. Miejsca zajmują się szybko, więc warto wpaść wcześniej albo zadzwonić.</p>
+        <ol class="events__list">
+          <li class="event">
+            <time class="event__date" datetime="2026-11-14T19:00"><span class="event__day">14</span><span class="event__month">lis</span></time>
+            <div class="event__body">
+              <h3>Koncert akustyczny: Ola Nowicka, gitara i głos</h3>
+              <p>Sobota, 19:00. Piosenki własne i kilka coverów po polsku. Czterdzieści minut, potem rozmowa przy kawie.</p>
+            </div>
+          </li>
+          <li class="event">
+            <time class="event__date" datetime="2026-11-20T18:00"><span class="event__day">20</span><span class="event__month">lis</span></time>
+            <div class="event__body">
+              <h3>Wieczór planszówek</h3>
+              <p>Czwartek, 18:00 do 22:00. Mamy na półce Carcassonne, Wsiąść do Pociągu, Azul i Dixit, można przynieść swoje. Gramy przy herbacie, kuchnia czynna do 21:00.</p>
+            </div>
+          </li>
+          <li class="event">
+            <time class="event__date" datetime="2026-11-28T10:00"><span class="event__day">28</span><span class="event__month">lis</span></time>
+            <div class="event__body">
+              <h3>Warsztat latte art z Tomkiem <span class="tag">80 zł</span></h3>
+              <p>Sobota, 10:00 do 12:30, przed otwarciem dla gości. Sześć osób, każda przy własnym dzbanku. W cenie kawa bez ograniczeń i torebka ziaren do domu. Zapisy telefonicznie.</p>
+            </div>
+          </li>
+          <li class="event">
+            <time class="event__date" datetime="2026-12-05T18:00"><span class="event__day">5</span><span class="event__month">gru</span></time>
+            <div class="event__body">
+              <h3>Wernisaż: Agnieszka Rataj, „Konin po zmroku”</h3>
+              <p>Piątek, 18:00. Dwadzieścia fotografii analogowych ze Starego Miasta i z bulwaru nad Wartą. Wystawa wisi u nas do końca stycznia.</p>
+            </div>
+          </li>
+        </ol>
+      </div>
+    </section>
+
+    <section id="galeria" class="gallery" aria-labelledby="gal-h">
+      <div class="wrap">
+        <h2 id="gal-h">Jak u nas wygląda</h2>
+      </div>
+      <div class="gallery__grid">
+        <img src="https://picsum.photos/seed/kawiarnia-1/1200/800" width="1200" height="800" loading="lazy" alt="Bar z ekspresem i stary zegar ścienny nad półką z winylami">
+        <img src="https://picsum.photos/seed/kawiarnia-2/800/1000" width="800" height="1000" loading="lazy" alt="Flat white w ceramicznej filiżance na drewnianym blacie">
+        <img src="https://picsum.photos/seed/kawiarnia-3/800/1000" width="800" height="1000" loading="lazy" alt="Kawałek sernika na kruchym spodzie z widelczykiem">
+        <img src="https://picsum.photos/seed/kawiarnia-4/1200/800" width="1200" height="800" loading="lazy" alt="Podwórko kawiarni ze stolikami i doniczkami z ziołami">
+        <img src="https://picsum.photos/seed/kawiarnia-5/1200/800" width="1200" height="800" loading="lazy" alt="Goście grający w planszówki wieczorem przy lampkach">
+      </div>
+    </section>
+
+    <section id="dojazd" class="map" aria-labelledby="dojazd-h">
+      <div class="wrap map__grid">
+        <div class="map__text">
+          <h2 id="dojazd-h">Dojazd</h2>
+          <address>
+            <strong>Kawiarnia Pod Zegarem</strong><br>
+            ul. Wiosny Ludów 14, 62-500 Konin<br>
+            <a href="tel:+48630000170">63 000 01 70</a><br>
+            <a href="mailto:czesc@podzegarem.konin.pl">czesc@podzegarem.konin.pl</a>
+          </address>
+          <h3>Samochodem</h3>
+          <p>Na Wiosny Ludów obowiązuje strefa ograniczonego ruchu, więc najprościej zostawić auto na parkingu przy Placu Wolności. Do nas idzie się stamtąd 3 minuty pieszo, w stronę ratusza, potem w lewo.</p>
+          <h3>Autobusem</h3>
+          <p>Przystanek Plac Wolności, linie 50, 52 i 56. Z dworca PKP jedzie się około 12 minut.</p>
+          <h3>Rowerem</h3>
+          <p>Stojaki stoją przed wejściem, pod zegarem. W środku można napełnić bidon.</p>
+        </div>
+        <iframe class="map__frame" src="https://www.google.com/maps?q=Konin,+ul.+Wiosny+Lud%C3%B3w+14&output=embed" width="600" height="450" loading="lazy" title="Mapa dojazdu do Kawiarni Pod Zegarem, ul. Wiosny Ludów 14, Konin" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe>
+      </div>
+    </section>
+
+    <section id="kontakt" class="contact" aria-labelledby="kontakt-h">
+      <div class="wrap contact__grid">
+        <div class="contact__text">
+          <h2 id="kontakt-h">Rezerwacja stolika albo cały lokal na wieczór</h2>
+          <p>Stolik dla 2 do 6 osób rezerwujemy na konkretną godzinę, bez przedpłaty. Większe grupy, urodziny albo spotkanie firmowe: lokal wynajmujemy po 19:00 w tygodniu i po 20:00 w sobotę, do 30 osób, z własnym menu ciast i kawy. Odpowiadamy w dniu zgłoszenia, najczęściej w ciągu dwóch godzin.</p>
+          <p>Wolisz zadzwonić? <a href="tel:+48630000170">63 000 01 70</a>, odbiera Marta albo Tomek.</p>
+        </div>
+        <form class="form" action="https://api.web3forms.com/submit" method="POST">
+          <input type="hidden" name="access_key" value="TWOJ_KLUCZ">
+          <input type="hidden" name="subject" value="Rezerwacja, Kawiarnia Pod Zegarem">
+          <fieldset class="form__radio">
+            <legend>Czego dotyczy zgłoszenie</legend>
+            <label><input type="radio" name="rodzaj" value="stolik" checked> Rezerwacja stolika</label>
+            <label><input type="radio" name="rodzaj" value="wynajem"> Wynajem na wieczór</label>
+          </fieldset>
+          <div class="form__row">
+            <label for="imie">Imię i nazwisko</label>
+            <input id="imie" name="imie" type="text" required autocomplete="name">
+          </div>
+          <div class="form__two">
+            <div class="form__row">
+              <label for="osoby">Liczba osób</label>
+              <input id="osoby" name="osoby" type="number" min="1" max="30" required inputmode="numeric">
+            </div>
+            <div class="form__row">
+              <label for="data">Data i godzina</label>
+              <input id="data" name="data" type="datetime-local" required>
+            </div>
+          </div>
+          <div class="form__row">
+            <label for="telefon">Telefon</label>
+            <input id="telefon" name="telefon" type="tel" required autocomplete="tel" placeholder="500 000 000">
+          </div>
+          <div class="form__row">
+            <label for="wiadomosc">Wiadomość (opcjonalnie)</label>
+            <textarea id="wiadomosc" name="wiadomosc" rows="3" placeholder="Np. stolik przy oknie, tort własny, wózek dziecięcy"></textarea>
+          </div>
+          <label class="consent"><input type="checkbox" name="zgoda" value="tak" required><span>Zgadzam się na kontakt telefoniczny w sprawie rezerwacji. Dane przetwarzamy zgodnie z <a href="../../polityka-prywatnosci.html">polityką prywatności</a>.</span></label>
+          <button class="btn" type="submit">Wyślij zgłoszenie</button>
+        </form>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <div class="wrap foot__grid">
+      <div>
+        <p class="foot__name">Kawiarnia Pod Zegarem</p>
+        <p>ul. Wiosny Ludów 14<br>62-500 Konin, Stare Miasto</p>
+        <p><a href="tel:+48630000170">63 000 01 70</a><br><a href="mailto:czesc@podzegarem.konin.pl">czesc@podzegarem.konin.pl</a></p>
+      </div>
+      <div>
+        <p class="foot__name">Godziny</p>
+        <p>pon - pt 7:30 - 19:00<br>sobota 9:00 - 20:00<br>niedziela 10:00 - 18:00</p>
+        <p>Śniadania do 12:00<br>Lody od maja do września</p>
+      </div>
+      <div class="foot__links">
+        <a href="../../polityka-prywatnosci.html">Polityka prywatności</a>
+        <a href="../../index.html">Strona demo przygotowana przez Studio Konin</a>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
