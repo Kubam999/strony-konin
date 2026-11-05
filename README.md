@@ -46,6 +46,8 @@ Hosting na Cloudflare Pages jest bezpłatny. Domenę podpina się w zakładce Cu
 | `meble-na-wymiar` | stolarnia mebli na wymiar, Stare Miasto | Wizytówka | Cormorant Garamond + Karla |
 | `biuro-rachunkowe` | biuro rachunkowe, Konin | Wizytówka | Figtree |
 | `kawiarnia` | kawiarnia na starówce, Konin | Wizytówka | Bricolage Grotesque + Atkinson Hyperlegible |
+| `restauracja-sala-weselna` | restauracja z salą weselną, Ślesin | Rozbudowana | Playfair Display + Lato |
+| `salon-beauty-szkolenia` | salon brwi i rzęs ze szkoleniami, Konin | Firma | Jost + Mulish |
 
 Nie powstały jeszcze (zaplanowane w kolejności): instalator-hydraulik, psychoterapia.
 
@@ -58,5 +60,7 @@ Wszystkie firmy w demo są fikcyjne. Adresy są wymyślone przy prawdziwych ulic
 - **Formularze**: każdy formularz wysyła na Web3Forms. Zarejestruj darmowy klucz na web3forms.com i podmień `TWOJ_KLUCZ` w polu `access_key` (strona główna i każde demo).
 - **Zdjęcia**: wszystkie obrazy to placeholdery z `picsum.photos`. Do podmiany na zdjęcia klienta (zachowaj atrybuty `width`, `height`, `alt`).
 - **Mapy**: iframe Google Maps wskazuje na wymyślony adres. Podmień parametr `q=` w `src`.
+- **Booksy**: w demo salonu link do Booksy jest placeholderem `https://booksy.com/pl-pl/TWOJ-LINK`.
+- **Zrzuty ekranu**: robione w środowisku bez dostępu do picsum.photos i Google Maps, więc w miejscu zdjęć i mapy widać szare pola z tekstem alternatywnym. W przeglądarce z internetem zdjęcia się ładują.
 - **Realizacje**: kafelki `[realizacja 1]` i `[realizacja 2]` w portfolio na stronie główną czekają na prawdziwe wdrożenia.
 - **Miniatury portfolio**: strona główna pokazuje `screenshots/<slug>-desktop.png`. Po zmianach w demo odśwież zrzuty.
