@@ -84,7 +84,7 @@ p{margin:0 0 1em}
 .consult-price small{font-family:var(--sans);font-size:1rem;display:block;margin-top:.5rem;color:#c8d1cc}
 .consult ul{margin:0 0 1.5rem;padding-left:1.2rem}
 .consult li{margin-bottom:.4rem}
-.btn{display:inline-block;padding:.9rem 1.6rem;border:1px solid var(--white);color:var(--white);text-decoration:none;font-weight:500;transition:background-color .2s,color .2s}
+.btn{display:inline-block;background:transparent;font:inherit;cursor:pointer;border-radius:0;padding:.9rem 1.6rem;border:1px solid var(--white);color:var(--white);text-decoration:none;font-weight:500;transition:background-color .2s,color .2s}
 .btn:hover{background:var(--white);color:var(--green)}
 .btn-dark{border-color:var(--green);color:var(--green)}
 .btn-dark:hover{background:var(--green);color:var(--white)}
