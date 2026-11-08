@@ -2,6 +2,10 @@ import { lazy, Suspense, useEffect, useRef, useState } from 'react';
 import Nav from './components/Nav';
 import Hero from './components/Hero';
 import Realizacje from './components/Realizacje';
+import CoRobimy from './components/CoRobimy';
+import JakPracujemy from './components/JakPracujemy';
+import Wycena from './components/Wycena';
+import Kontakt from './components/Kontakt';
 import Footer from './components/Footer';
 import SmoothScroll from './components/SmoothScroll';
 import { wstega3D } from './lib/srodowisko';
@@ -28,6 +32,10 @@ export default function App() {
       <main id="tresc">
         <Hero ref={hero} tryb3D={tryb3D} />
         <Realizacje />
+        <CoRobimy />
+        <JakPracujemy />
+        <Wycena />
+        <Kontakt />
       </main>
       <Footer />
       {tryb3D && (

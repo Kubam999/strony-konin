@@ -1,0 +1,126 @@
+.kontakt__wrap {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  gap: var(--space-8);
+  align-items: start;
+}
+
+.kontakt__info {
+  display: grid;
+  gap: var(--space-4);
+}
+
+.kontakt__dane {
+  margin: var(--space-4) 0 0;
+  display: grid;
+  gap: var(--space-3);
+}
+.kontakt__dane div {
+  display: grid;
+  grid-template-columns: 6rem 1fr;
+  gap: var(--space-3);
+  padding-top: var(--space-3);
+  border-top: 1px solid var(--line);
+}
+.kontakt__dane dt {
+  color: var(--ink-2);
+  font-size: var(--text-sm);
+}
+.kontakt__dane dd {
+  margin: 0;
+}
+.kontakt__dane a:hover {
+  color: var(--accent);
+}
+
+.formularz {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-5) var(--space-4);
+  padding: var(--space-6);
+  background: var(--surface);
+  border: 1px solid var(--line);
+  border-radius: var(--radius-lg);
+}
+.pole {
+  display: grid;
+  gap: var(--space-2);
+}
+.pole--pelne {
+  grid-column: 1 / -1;
+}
+.pole label {
+  font-size: var(--text-sm);
+  font-weight: 500;
+}
+.pole input,
+.pole select,
+.pole textarea {
+  font: inherit;
+  color: var(--ink);
+  width: 100%;
+  min-height: 48px;
+  padding: 12px 14px;
+  background: var(--bg);
+  border: 1px solid var(--line-strong);
+  border-radius: var(--radius);
+  transition: border-color var(--dur-fast) var(--ease-out);
+}
+.pole textarea {
+  resize: vertical;
+  min-height: 140px;
+}
+.pole input::placeholder,
+.pole textarea::placeholder {
+  color: var(--ink-3);
+}
+.pole input:focus-visible,
+.pole select:focus-visible,
+.pole textarea:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 0;
+  border-color: var(--accent);
+}
+
+.zgoda {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: var(--space-3);
+  align-items: start;
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+.zgoda input {
+  width: 20px;
+  height: 20px;
+  margin: 2px 0 0;
+  accent-color: var(--accent);
+}
+
+.formularz__dol {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: var(--space-4);
+}
+.formularz__status {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+  flex: 1 1 20ch;
+}
+.formularz__status:empty {
+  display: none;
+}
+
+@media (max-width: 900px) {
+  .kontakt__wrap {
+    grid-template-columns: 1fr;
+    gap: var(--space-7);
+  }
+}
+@media (max-width: 600px) {
+  .formularz {
+    grid-template-columns: 1fr;
+    padding: var(--space-5);
+  }
+}

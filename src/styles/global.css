@@ -209,3 +209,16 @@ html.lenis-aktywny body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
+
+/* Sekcje treściowe: nad warstwą wstęgi „za” (z-index 1) */
+.sekcja {
+  position: relative;
+  z-index: 2;
+  padding-block: var(--section);
+}
+.sekcja__naglowek {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 44rem;
+  margin-bottom: var(--space-8);
+}

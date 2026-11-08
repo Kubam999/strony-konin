@@ -1,0 +1,106 @@
+.co__lista {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-4);
+}
+
+.karta {
+  display: grid;
+  gap: var(--space-3);
+  align-content: start;
+  padding: var(--space-6);
+  background: var(--surface);
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--line);
+}
+.karta__nr {
+  font-size: var(--text-sm);
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.karta__nazwa {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-h3);
+  letter-spacing: -0.02em;
+  line-height: 1.05;
+}
+.karta__dla {
+  color: var(--ink-2);
+  text-wrap: pretty;
+}
+.karta__opis {
+  text-wrap: pretty;
+}
+.karta__zestaw {
+  list-style: none;
+  margin: var(--space-3) 0 0;
+  padding: var(--space-4) 0 0;
+  border-top: 1px solid var(--line);
+  display: grid;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+.karta__zestaw li {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.karta__zestaw li::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+.co__dla {
+  margin-top: var(--space-8);
+  padding-top: var(--space-6);
+  border-top: 1px solid var(--line);
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: var(--space-4) var(--space-7);
+  align-items: baseline;
+}
+.co__dla-tytul {
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+}
+.co__dla-lista {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-h3);
+  letter-spacing: -0.02em;
+  line-height: 1.25;
+  text-wrap: balance;
+}
+.co__dla-lista span span {
+  color: var(--ink-3);
+}
+.co__dla-opis {
+  grid-column: 2;
+  color: var(--ink-2);
+  max-width: 58ch;
+  text-wrap: pretty;
+}
+
+@media (max-width: 1024px) {
+  .co__lista {
+    grid-template-columns: 1fr;
+  }
+}
+@media (max-width: 760px) {
+  .co__dla {
+    grid-template-columns: 1fr;
+  }
+  .co__dla-opis {
+    grid-column: 1;
+  }
+}

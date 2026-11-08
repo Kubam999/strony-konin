@@ -5,7 +5,7 @@ const BASE = import.meta.env.BASE_URL;
 
 export default function Footer() {
   return (
-    <footer className="stopka" id="kontakt">
+    <footer className="stopka">
       <div className="container stopka__row">
         <div>
           <p className="stopka__brand">{BRAND}</p>

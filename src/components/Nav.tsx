@@ -5,6 +5,7 @@ import './Nav.css';
 const LINKI = [
   { href: '#realizacje', label: 'Realizacje' },
   { href: '#co-robimy', label: 'Co robimy' },
+  { href: '#jak-pracujemy', label: 'Jak pracujemy' },
   { href: '#kontakt', label: 'Kontakt' },
 ];
 
