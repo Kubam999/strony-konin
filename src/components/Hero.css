@@ -27,6 +27,8 @@
   font-size: var(--text-hero);
   max-width: 12ch;
   pointer-events: none;
+  /* poświata w kolorze tła odcina litery od kafli za nimi */
+  text-shadow: 0 0 1px var(--bg), 0 0 14px var(--bg), 0 0 36px var(--bg), 0 0 64px var(--bg);
 }
 
 .hero__eyebrow,

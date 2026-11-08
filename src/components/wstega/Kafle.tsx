@@ -151,7 +151,8 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
       mat.uniforms.uAmp.value = k.amp;
       mat.uniforms.uMix.value = k.mix;
       mat.uniforms.uPrzesuw.value = k.przesuw;
-      mat.uniforms.uAlpha.value = k.alpha;
+      // na pętli kafle za nagłówkiem są przygaszone, żeby tekst był czytelny
+      mat.uniforms.uAlpha.value = k.alpha * (warstwa === 'za' ? 0.45 + 0.55 * p : 1);
       mat.uniforms.uWiatr.value = p;
       mat.uniforms.uCzas.value = stan.czas + i * 1.7;
       if (hov) mat.uniforms.uPunkt.value.set(stan.punkt.x, stan.punkt.y);

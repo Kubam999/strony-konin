@@ -39,12 +39,13 @@ export default function Wstega({ hero }: Props) {
     if (el && i >= 0) el.style.transform = `translate(${x + 16}px, ${y + 18}px)`;
   }, []);
 
-  // Postęp przejścia pętla -> siatka: od wejścia siatki na ekran do jej ustawienia w górnej części
+  // Postęp przejścia pętla -> siatka: zaczyna się, gdy sekcja realizacji wjeżdża, i kończy
+  // po pół ekranu scrolla, więc kafle są na miejscu, zanim siatka pokaże się w całości
   useEffect(() => {
     const st = ScrollTrigger.create({
-      trigger: '#realizacje .real__siatka',
-      start: 'top 100%',
-      end: 'top 38%',
+      trigger: '#realizacje',
+      start: 'top 90%',
+      end: () => `+=${Math.round(innerHeight * 0.55)}`,
       onUpdate: (s) => {
         stan.postep = s.progress;
       },
