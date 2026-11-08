@@ -1,0 +1,187 @@
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  -webkit-text-size-adjust: 100%;
+  scroll-behavior: smooth;
+}
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: var(--text-md);
+  line-height: 1.5;
+  font-optical-sizing: auto;
+  -webkit-font-smoothing: antialiased;
+  text-rendering: optimizeLegibility;
+}
+
+img,
+svg,
+video,
+canvas {
+  display: block;
+  max-width: 100%;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button {
+  font: inherit;
+  color: inherit;
+  background: none;
+  border: 0;
+  padding: 0;
+  cursor: pointer;
+}
+
+h1,
+h2,
+h3,
+p {
+  margin: 0;
+}
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+  border-radius: 2px;
+}
+
+::selection {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+
+.container {
+  width: min(100% - 2 * var(--gutter), var(--container));
+  margin-inline: auto;
+}
+
+.skip {
+  position: absolute;
+  left: var(--gutter);
+  top: -100px;
+  z-index: 100;
+  padding: 10px 16px;
+  background: var(--ink);
+  color: var(--bg);
+  border-radius: var(--radius-pill);
+}
+.skip:focus {
+  top: 12px;
+}
+
+/* Typografia pomocnicza */
+.display {
+  font-family: var(--font-display);
+  font-weight: 500;
+  letter-spacing: -0.035em;
+  line-height: 0.95;
+  font-stretch: 92%;
+}
+
+.h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: var(--text-h2);
+  letter-spacing: -0.03em;
+  line-height: 0.98;
+  font-stretch: 94%;
+  text-wrap: balance;
+}
+
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  font-size: var(--text-sm);
+  font-weight: 500;
+  color: var(--ink-2);
+  letter-spacing: 0.01em;
+}
+.eyebrow::before {
+  content: '';
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background: var(--accent);
+}
+
+.lead {
+  font-size: var(--text-lg);
+  line-height: 1.4;
+  color: var(--ink-2);
+  max-width: 34ch;
+  text-wrap: pretty;
+}
+
+/* Przyciski */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  min-height: 48px;
+  padding: 0 22px;
+  border-radius: var(--radius-pill);
+  font-weight: 500;
+  font-size: var(--text-md);
+  line-height: 1;
+  white-space: nowrap;
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out),
+    border-color var(--dur-fast) var(--ease-out), transform var(--dur-fast) var(--ease-out);
+}
+.btn:active {
+  transform: translateY(1px);
+}
+.btn--ink {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn--ink:hover {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn--ghost {
+  border: 1px solid var(--line-strong);
+  color: var(--ink);
+}
+.btn--ghost:hover {
+  border-color: var(--ink);
+}
+.btn--accent {
+  background: var(--accent);
+  color: var(--accent-ink);
+}
+.btn--accent:hover {
+  background: var(--ink);
+  color: var(--bg);
+}
+.btn--sm {
+  min-height: 40px;
+  padding: 0 16px;
+  font-size: var(--text-sm);
+}
+
+/* Ogranicz ruch, gdy użytkownik o to prosi */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

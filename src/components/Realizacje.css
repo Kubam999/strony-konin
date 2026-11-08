@@ -1,0 +1,81 @@
+.real {
+  padding-block: var(--section);
+}
+
+.real__naglowek {
+  display: grid;
+  gap: var(--space-4);
+  max-width: 44rem;
+  margin-bottom: var(--space-8);
+}
+
+.real__siatka {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: var(--space-7) var(--space-5);
+}
+
+.kafel__link {
+  display: grid;
+  gap: var(--space-3);
+}
+
+.kafel__ramka {
+  display: block;
+  aspect-ratio: 16 / 10;
+  border-radius: var(--radius);
+  overflow: hidden;
+  box-shadow: var(--shadow-tile);
+}
+.kafel__ramka img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: top;
+}
+
+.kafel__podpis {
+  display: grid;
+  grid-template-columns: auto 1fr auto;
+  grid-template-areas:
+    'nr nazwa branza'
+    'nr rodzaj rodzaj';
+  column-gap: var(--space-3);
+  font-size: var(--text-sm);
+  line-height: 1.35;
+}
+.kafel__nr {
+  grid-area: nr;
+  color: var(--ink-3);
+  font-variant-numeric: tabular-nums;
+}
+.kafel__nazwa {
+  grid-area: nazwa;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-md);
+  letter-spacing: -0.01em;
+}
+.kafel__branza {
+  grid-area: branza;
+  color: var(--ink-2);
+}
+.kafel__rodzaj {
+  grid-area: rodzaj;
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+}
+
+@media (max-width: 1024px) {
+  .real__siatka {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+}
+@media (max-width: 600px) {
+  .real__siatka {
+    grid-template-columns: 1fr;
+  }
+}

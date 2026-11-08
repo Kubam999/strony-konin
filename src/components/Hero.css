@@ -1,0 +1,96 @@
+.hero {
+  position: relative;
+  min-height: 100svh;
+  padding-top: calc(var(--nav-h) + var(--space-6));
+  padding-bottom: var(--space-6);
+  display: flex;
+  overflow: clip;
+}
+
+.hero__wrap {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: var(--space-7);
+  flex: 1;
+}
+
+.hero__eyebrow {
+  margin-top: var(--space-4);
+}
+
+.hero__h {
+  font-size: var(--text-hero);
+  max-width: 12ch;
+}
+
+.hero__wiersz {
+  display: block;
+}
+
+.hero__akcent {
+  font-family: var(--font-serif);
+  font-style: italic;
+  font-weight: 380;
+  font-stretch: 100%;
+  letter-spacing: -0.025em;
+  color: var(--accent);
+  font-variation-settings: 'SOFT' 40, 'WONK' 1;
+  padding-right: 0.06em; /* ogon kursywy nie wchodzi na następną literę */
+}
+
+.hero__dol {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  grid-template-areas:
+    'lead cta'
+    'meta meta';
+  align-items: end;
+  gap: var(--space-5) var(--space-7);
+}
+
+.hero__lead {
+  grid-area: lead;
+}
+
+.hero__cta {
+  grid-area: cta;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-3);
+}
+
+.hero__meta {
+  grid-area: meta;
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2) var(--space-6);
+  padding-top: var(--space-5);
+  border-top: 1px solid var(--line);
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+
+.hero__scena {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+@media (max-width: 760px) {
+  .hero {
+    padding-top: calc(var(--nav-h) + var(--space-4));
+  }
+  .hero__dol {
+    grid-template-columns: 1fr;
+    grid-template-areas:
+      'lead'
+      'cta'
+      'meta';
+  }
+  .hero__cta .btn {
+    flex: 1 1 auto;
+  }
+}

@@ -1,0 +1,62 @@
+/* Tokeny identyfikacji. Opis i uzasadnienie w DESIGN.md. */
+:root {
+  /* Kolory */
+  --bg: #EDEDEF;
+  --surface: #FAFAFA;
+  --ink: #121212;
+  --ink-2: #5F5F67;
+  --ink-3: #8E8E96;
+  --line: rgba(18, 18, 18, 0.12);
+  --line-strong: rgba(18, 18, 18, 0.28);
+  --accent: #F0401E;
+  --accent-ink: #FFFFFF;
+  --dark: #121212;
+  --dark-ink: #EDEDEF;
+
+  /* Typografia */
+  --font-display: 'Bricolage Grotesque Variable', 'Helvetica Neue', Arial, sans-serif;
+  --font-serif: 'Fraunces Variable', Georgia, 'Times New Roman', serif;
+  --font-body: 'Hanken Grotesk Variable', system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --text-xs: 0.75rem;
+  --text-sm: 0.875rem;
+  --text-md: 1rem;
+  --text-lg: clamp(1.125rem, 1rem + 0.4vw, 1.375rem);
+  --text-h3: clamp(1.375rem, 1.1rem + 1vw, 2rem);
+  --text-h2: clamp(2.25rem, 1.4rem + 3.6vw, 5rem);
+  --text-hero: clamp(3rem, 1rem + 10.2vw, 10.75rem);
+
+  /* Odstępy i siatka */
+  --space-1: 4px;
+  --space-2: 8px;
+  --space-3: 12px;
+  --space-4: 16px;
+  --space-5: 24px;
+  --space-6: 32px;
+  --space-7: 48px;
+  --space-8: 64px;
+  --space-9: 96px;
+  --space-10: 144px;
+  --container: 1440px;
+  --gutter: clamp(16px, 1rem + 1.6vw, 40px);
+  --section: clamp(72px, 6vw + 40px, 144px);
+  --nav-h: 64px;
+
+  /* Kształty i cienie */
+  --radius: 6px;
+  --radius-lg: 12px;
+  --radius-pill: 999px;
+  --shadow-tile: 0 1px 2px rgba(18, 18, 18, 0.06), 0 12px 32px -12px rgba(18, 18, 18, 0.25);
+
+  /* Ruch */
+  --ease-out: cubic-bezier(0.16, 1, 0.3, 1);
+  --ease-in-out: cubic-bezier(0.65, 0, 0.35, 1);
+  --dur-fast: 180ms;
+  --dur-base: 420ms;
+  --dur-slow: 900ms;
+}
+
+/* Alternatywny akcent do porównania: ?accent=kobalt */
+:root[data-accent='kobalt'] {
+  --accent: #2F4BDA;
+}

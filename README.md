@@ -1,68 +1,85 @@
 # Strony Konin
 
-Portfolio demonstracyjne trzyosobowego zespołu, który robi strony internetowe dla małych firm z Konina i powiatu konińskiego. Czysty HTML, CSS i minimalny JS. Bez frameworków, bez buildu, bez npm. Każda strona działa po otwarciu pliku `index.html` w przeglądarce i po wrzuceniu na Cloudflare Pages.
+Strona portfolio trzyosobowego zespołu, który robi strony internetowe dla lokalnych firm z Konina
+i okolic. Klient przegląda na niej nasze realizacje, czyta krótko, co robimy i dla kogo, i pisze do nas
+po wycenę. Identyfikacja i zasady w `DESIGN.md`.
+
+Adres po wdrożeniu: https://kubam999.github.io/strony-konin/
 
 ## Struktura
 
-- `index.html`, `style.css`, `script.js`: strona główna zespołu (robocza nazwa "Studio Konin").
-- `polityka-prywatnosci.html`: wspólna polityka prywatności, linkowana ze strony głównej i ze wszystkich demo.
-- `demo/<slug>/`: każde demo w osobnym, samowystarczalnym folderze (własny `style.css`, podstrony jako osobne pliki `.html`). Folder można skopiować i oddać klientowi jako punkt startowy.
-- `demo/index.html`: lista wszystkich demo.
-- `screenshots/`: zrzuty ekranu z kontroli jakości (1366 px i 390 px), używane też jako miniatury w portfolio na stronie głównej.
-- `NAZWY.md`: 10 propozycji nazwy zespołu z domenami do sprawdzenia.
+- `index.html`, `src/`: nowa strona (Vite + React + TypeScript).
+  - `src/config/site.ts`: nazwa zespołu, hasło, kontakt. Jedno miejsce do podmiany.
+  - `src/data/realizacje.ts`: lista realizacji. Nową dodaje się jednym wpisem i zrzutem (niżej).
+  - `src/components/`: sekcje strony, każda z własnym CSS.
+  - `src/styles/tokens.css`: kolory, fonty, odstępy z `DESIGN.md`.
+- `public/realizacje/`: miniatury realizacji generowane skryptem (WebP).
+- `scripts/screenshots.mjs`: robi miniatury (Playwright + sharp).
+- `scripts/qa-shots.mjs`: zrzuty kontrolne strony na 1440 i 390 px.
+- `scripts/copy-static.mjs`: po buildzie kopiuje `demo/`, `screenshots/` i politykę prywatności do `dist/`.
+- `demo/`: 15 stron demo dla firm z Konina (czysty HTML, bez zmian). Dostępne pod `/demo/`, link w stopce.
+- `polityka-prywatnosci.html`: wspólna polityka prywatności, linkowana ze stopki i z demo.
+- `reference/`: materiały referencyjne do projektu (nagranie i opis). Nie trafiają do builda.
+- `.github/workflows/deploy.yml`: build i wdrożenie na GitHub Pages.
 
-## Jak podejrzeć lokalnie
-
-Wystarczy otworzyć `index.html` w przeglądarce. Linki między stroną główną a demo są względne, więc działają z dysku. Jeśli wolisz serwer (żeby mapy i czcionki ładowały się bez ostrzeżeń):
+## Praca lokalna
 
 ```bash
-python3 -m http.server 8080
+npm install
+npm run dev
 ```
 
-i wejść na `http://localhost:8080`.
+Strona działa pod `http://localhost:5173/strony-konin/` (base taki sam jak na GitHub Pages).
 
-## Jak wdrożyć na Cloudflare Pages
+```bash
+npm run build
+npm run preview
+```
 
-1. Zaloguj się w Cloudflare, Workers & Pages, Create, Pages, Connect to Git.
-2. Wybierz to repozytorium i gałąź.
-3. Framework preset: None. Build command: puste. Build output directory: `/` (katalog główny).
-4. Deploy. Strona główna będzie pod `https://<nazwa>.pages.dev/`, demo pod `/demo/<slug>/`.
-5. Żeby oddać klientowi pojedyncze demo, skopiuj folder `demo/<slug>/` do osobnego repozytorium i wdróż tak samo. W stopce demo popraw wtedy link do polityki prywatności (skopiuj `polityka-prywatnosci.html` do folderu i zmień `href`).
+`build` sprawdza typy, buduje do `dist/` i dokłada demo. `preview` serwuje `dist/` pod
+`http://localhost:4173/strony-konin/`.
 
-Hosting na Cloudflare Pages jest bezpłatny. Domenę podpina się w zakładce Custom domains.
+## Jak dodać realizację
 
-## Lista demo
+1. Dopisz wpis do `src/data/realizacje.ts` (slug, nazwa, branża, opis, adres, autor, rodzaj, kolor).
+2. Zrób miniatury:
 
-| Slug | Branża | Pakiet | Fonty |
-|---|---|---|---|
-| `szkola-jazdy` | szkoła jazdy, Konin | Firma | Barlow + Source Sans 3 |
-| `weterynarz` | przychodnia weterynaryjna, Konin | Firma | Nunito |
-| `stomatolog` | gabinet stomatologiczny, Konin | Firma | DM Serif Display + DM Sans |
-| `fotowoltaika-pompy-ciepla` | instalator PV i pomp ciepła, Kazimierz Biskupi | Firma | Manrope |
-| `fizjoterapia` | gabinet fizjoterapii, Konin | Firma | Fraunces + Inter |
-| `kancelaria-adwokacka` | kancelaria adwokacka, Konin | Firma | Libre Baskerville + IBM Plex Sans |
-| `warsztat-detailing` | studio auto detailingu, Konin | Wizytówka | Oswald + Roboto |
-| `firma-remontowa` | firma remontowa, Golina | Wizytówka | Work Sans |
-| `meble-na-wymiar` | stolarnia mebli na wymiar, Stare Miasto | Wizytówka | Cormorant Garamond + Karla |
-| `biuro-rachunkowe` | biuro rachunkowe, Konin | Wizytówka | Figtree |
-| `kawiarnia` | kawiarnia na starówce, Konin | Wizytówka | Bricolage Grotesque + Atkinson Hyperlegible |
-| `restauracja-sala-weselna` | restauracja z salą weselną, Ślesin | Rozbudowana | Playfair Display + Lato |
-| `salon-beauty-szkolenia` | salon brwi i rzęs ze szkoleniami, Konin | Firma | Jost + Mulish |
-| `instalator-hydraulik` | hydraulik i instalator, Kleczew | Wizytówka | Rubik |
-| `psychoterapia` | gabinet psychoterapii, Konin | Wizytówka | Lora + Source Sans 3 |
+```bash
+npx playwright install chromium
+```
 
-Wszystkie 15 zaplanowanych demo jest gotowych. Dwa ostatnie (hydraulik, psychoterapia) powstały w pośpiechu, bez oglądania zrzutów, więc warto je obejrzeć w przeglądarce jako pierwsze.
+```bash
+npm run zrzuty <slug>
+```
 
-Wszystkie firmy w demo są fikcyjne. Adresy są wymyślone przy prawdziwych ulicach Konina i okolicznych miejscowości, telefony w formacie 63 000 00 00 lub 500 000 000.
+3. Zatwierdź wpis i pliki z `public/realizacje/`.
+
+Bez argumentu `npm run zrzuty` odświeża wszystkie miniatury. Filtr branż w realizacjach jest w kodzie
+i włącza się sam od 8 wpisów (`FILTR_BRANZ_OD` w `src/config/site.ts`).
+
+## Zrzuty kontrolne
+
+```bash
+npm run preview
+```
+
+```bash
+npm run qa -- <katalog-wyjściowy>
+```
+
+Robi zrzuty ekranu i całej strony na 1440 i 390 px oraz wypisuje błędy z konsoli przeglądarki.
+
+## Wdrożenie
+
+Workflow w `.github/workflows/deploy.yml` buduje stronę przy każdym pushu na `main` i `przebudowa`
+i wdraża `dist/` na GitHub Pages. W ustawieniach repozytorium (Settings, Pages) źródło musi być
+ustawione na „GitHub Actions”. Base w `vite.config.ts` to `/strony-konin/`; przy zmianie nazwy
+repozytorium trzeba go zmienić.
 
 ## Co trzeba uzupełnić ręcznie
 
-- **Nazwa zespołu**: robocza "Studio Konin". Zmiana w jednym miejscu: atrybut `data-brand` w `<body>` w `index.html` (skrypt podmienia wszystkie wystąpienia). Propozycje w `NAZWY.md`.
-- **Kontakt**: placeholdery `[imię]`, `[telefon]`, `[mail]` w `index.html` i `polityka-prywatnosci.html`.
-- **Formularze**: każdy formularz wysyła na Web3Forms. Zarejestruj darmowy klucz na web3forms.com i podmień `TWOJ_KLUCZ` w polu `access_key` (strona główna i każde demo).
-- **Zdjęcia**: wszystkie obrazy to placeholdery z `picsum.photos`. Do podmiany na zdjęcia klienta (zachowaj atrybuty `width`, `height`, `alt`).
-- **Mapy**: iframe Google Maps wskazuje na wymyślony adres. Podmień parametr `q=` w `src`.
-- **Booksy**: w demo salonu link do Booksy jest placeholderem `https://booksy.com/pl-pl/TWOJ-LINK`.
-- **Zrzuty ekranu**: robione w środowisku bez dostępu do picsum.photos i Google Maps, więc w miejscu zdjęć i mapy widać szare pola z tekstem alternatywnym. W przeglądarce z internetem zdjęcia się ładują.
-- **Realizacje**: kafelki `[realizacja 1]` i `[realizacja 2]` w portfolio na stronie główną czekają na prawdziwe wdrożenia.
-- **Miniatury portfolio**: strona główna pokazuje `screenshots/<slug>-desktop.png`. Po zmianach w demo odśwież zrzuty.
+- **Nazwa zespołu**: robocza „Studio Konin”, stała `BRAND` w `src/config/site.ts`. Propozycje w `NAZWY.md`.
+- **Hasło**: stała `HASLO` tamże.
+- **Kontakt**: placeholdery `[mail]` i `[telefon]` w `KONTAKT`.
+- **Formularz kontaktowy**: na razie tylko wizualny, nic nie wysyła.
+- **Demo**: formularze w `demo/` wysyłają na Web3Forms i wymagają klucza w polu `access_key`.

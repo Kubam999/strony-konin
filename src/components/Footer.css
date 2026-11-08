@@ -1,0 +1,55 @@
+.stopka {
+  background: var(--dark);
+  color: var(--dark-ink);
+  padding-block: var(--space-8) var(--space-6);
+}
+
+.stopka__row {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-6);
+  padding-bottom: var(--space-6);
+  border-bottom: 1px solid rgba(237, 237, 239, 0.16);
+}
+
+.stopka__brand {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: var(--text-h3);
+  letter-spacing: -0.02em;
+}
+
+.stopka__info {
+  margin-top: var(--space-2);
+  color: rgba(237, 237, 239, 0.7);
+  font-size: var(--text-sm);
+}
+
+.stopka__linki {
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+  font-size: var(--text-sm);
+}
+.stopka__linki a {
+  color: rgba(237, 237, 239, 0.8);
+}
+.stopka__linki a:hover {
+  color: var(--dark-ink);
+  text-decoration: underline;
+  text-underline-offset: 3px;
+}
+
+.stopka__dol {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: var(--space-3) var(--space-6);
+  padding-top: var(--space-5);
+  font-size: var(--text-xs);
+  color: rgba(237, 237, 239, 0.6);
+}
+.stopka__dol p {
+  max-width: 60ch;
+}
