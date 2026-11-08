@@ -30,7 +30,7 @@
   border-color: var(--ink);
 }
 .chip--aktywny span {
-  color: var(--accent);
+  color: #FF8A6B;
 }
 
 .real__naglowek {

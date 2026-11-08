@@ -62,7 +62,8 @@ export default function Wstega({ hero }: Props) {
     let predkosc = 0;
     const down = (e: PointerEvent) => {
       if (stan.postep > 0.3) return;
-      if ((e.target as HTMLElement).closest('a, button, input, textarea, select')) return;
+      // tekst pod nagłówkiem da się zaznaczać; przeciąganie zaczyna się poza nim
+      if ((e.target as HTMLElement).closest('a, button, input, textarea, select, .hero__dol')) return;
       stan.przeciaganie = true;
       stan.przesunieto = false;
       stan.bezwladnosc = 0;

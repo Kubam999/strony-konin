@@ -5,10 +5,12 @@
   --surface: #FAFAFA;
   --ink: #121212;
   --ink-2: #5F5F67;
-  --ink-3: #8E8E96;
+  --ink-3: #66666E;
   --line: rgba(18, 18, 18, 0.12);
   --line-strong: rgba(18, 18, 18, 0.28);
   --accent: #F0401E;
+  /* wypełnienie przycisków: ciemniejsze o krok, żeby biały tekst miał kontrast 4,5:1 */
+  --accent-tlo: #D9360F;
   --accent-ink: #FFFFFF;
   --dark: #121212;
   --dark-ink: #EDEDEF;
@@ -59,4 +61,5 @@
 /* Alternatywny akcent do porównania: ?accent=kobalt */
 :root[data-accent='kobalt'] {
   --accent: #2F4BDA;
+  --accent-tlo: #2F4BDA;
 }

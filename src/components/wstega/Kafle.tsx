@@ -1,6 +1,5 @@
 import { useEffect, useMemo, useRef } from 'react';
-import { useFrame, type ThreeEvent } from '@react-three/fiber';
-import { useTexture } from '@react-three/drei';
+import { useFrame, useLoader, type ThreeEvent } from '@react-three/fiber';
 import { Mesh, PlaneGeometry, SRGBColorSpace, TextureLoader, Vector3, type BufferAttribute, type Texture } from 'three';
 import type { Realizacja } from '../../data/realizacje';
 import { stan, CZAS_OBIEGU, Z_TEKSTU, KAMERA } from './stan';
@@ -42,7 +41,7 @@ const dazy = (a: number, cel: number, krok: number, tempo: number) => a + (cel -
  */
 export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHover }: Props) {
   const n = realizacje.length;
-  const tekstury = useTexture(realizacje.map((r) => `${BASE}realizacje/${r.slug}.webp`)) as Texture[];
+  const tekstury = useLoader(TextureLoader, realizacje.map((r) => `${BASE}realizacje/${r.slug}.webp`)) as Texture[];
   useEffect(() => {
     tekstury.forEach((t) => {
       t.colorSpace = SRGBColorSpace;

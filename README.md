@@ -57,6 +57,17 @@ npm run zrzuty <slug>
 Bez argumentu `npm run zrzuty` odświeża wszystkie miniatury. Filtr branż w realizacjach jest w kodzie
 i włącza się sam od 8 wpisów (`FILTR_BRANZ_OD` w `src/config/site.ts`).
 
+## Jak działa wstęga i siatka
+
+- `src/components/wstega/`: scena WebGL (react-three-fiber) w dwóch stałych warstwach, za treścią i przed nią.
+  Kafle z miniaturami krążą po pochylonej pętli w hero, a przy scrollu przelatują do komórek siatki
+  w sekcji realizacji i tam zostają (komórki DOM są zwykłymi linkami). Po najechaniu kafel faluje
+  i pokazuje pełny zrzut strony przesuwany w dół.
+- Na telefonie, bez WebGL i przy `prefers-reduced-motion` zamiast sceny jest przewijana palcem
+  taśma kafli w CSS, a siatka pokazuje zwykłe obrazki. Lenis też się wtedy wyłącza.
+- Parametry `?pauza=1` i `?offset=0.3` zatrzymują wstęgę w zadanym miejscu (do zrzutów i testów),
+  `?accent=kobalt` przełącza akcent.
+
 ## Zrzuty kontrolne
 
 ```bash
@@ -68,6 +79,7 @@ npm run qa -- <katalog-wyjściowy>
 ```
 
 Robi zrzuty ekranu i całej strony na 1440 i 390 px oraz wypisuje błędy z konsoli przeglądarki.
+Katalog `zrzuty-etapy/` jest ignorowany przez git i służy do podglądu zrzutów z pracy nad stroną.
 
 ## Wdrożenie
 

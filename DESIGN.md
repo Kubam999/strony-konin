@@ -21,9 +21,10 @@ i własny układ. Ten plik jest źródłem prawdy dla tokenów w `src/styles/tok
 | `--surface` | `#FAFAFA` | karty, pola formularza, elementy uniesione nad tło |
 | `--ink` | `#121212` | tekst, przyciski główne |
 | `--ink-2` | `#5F5F67` | tekst pomocniczy (kontrast 5,5:1 na tle) |
-| `--ink-3` | `#8E8E96` | numeracja, metadane (tylko duży lub niekluczowy tekst) |
+| `--ink-3` | `#66666E` | numeracja, metadane (kontrast 4,8:1) |
 | `--line` | `rgba(18,18,18,.12)` | linie podziału |
 | `--accent` | `#F0401E` ogień **lub** `#2F4BDA` kobalt | jeden mocny akcent, decyzja po zrzutach |
+| `--accent-tlo` | `#D9360F` dla ognia, `#2F4BDA` dla kobaltu | wypełnienie przycisków akcentowych: biały tekst ma na nim 4,5:1 |
 | `--dark` | `#121212` | ciemne pasy: wycena, stopka |
 
 Dlaczego `#EDEDEF`, a nie `#FAFAFA`: cztery z pięciu miniatur są ciemne, a jedna (Grań) jest kremowa.
@@ -32,7 +33,8 @@ widoczną krawędź, a karty i formularz w `#FAFAFA` dostają własną warstwę.
 
 Zasady akcentu: słowo kursywą w haśle, przycisk „Napisz do nas” w nawigacji, kropka przy
 etykietach, obrys fokusu, hover przycisków. Nigdzie indziej. Tekst na akcencie zawsze biały
-i tylko w przyciskach (duży tekst, kontrast 3,9:1 dla ognia i 6,5:1 dla kobaltu).
+i tylko w przyciskach, które używają `--accent-tlo` (kontrast 4,7:1 dla ognia i 6,5:1 dla kobaltu).
+Sam `--accent` na jasnym tle ma 3,3:1, więc służy tylko do dużego tekstu i elementów graficznych.
 
 ## 3. Typografia
 

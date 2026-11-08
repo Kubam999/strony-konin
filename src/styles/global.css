@@ -148,7 +148,7 @@ p {
   color: var(--bg);
 }
 .btn--ink:hover {
-  background: var(--accent);
+  background: var(--accent-tlo);
   color: var(--accent-ink);
 }
 .btn--ghost {
@@ -159,7 +159,7 @@ p {
   border-color: var(--ink);
 }
 .btn--accent {
-  background: var(--accent);
+  background: var(--accent-tlo);
   color: var(--accent-ink);
 }
 .btn--accent:hover {
@@ -170,6 +170,14 @@ p {
   min-height: 40px;
   padding: 0 16px;
   font-size: var(--text-sm);
+}
+
+/* Na ekranach dotykowych cele dotyku mają co najmniej 44 px */
+@media (pointer: coarse) {
+  .btn--sm,
+  .chip {
+    min-height: 44px;
+  }
 }
 
 /* Ogranicz ruch, gdy użytkownik o to prosi */
@@ -208,6 +216,11 @@ html.lenis-aktywny body {
 }
 .lenis.lenis-stopped {
   overflow: hidden;
+}
+
+/* Cele kotwic zatrzymują się pod stałą nawigacją */
+[id] {
+  scroll-margin-top: calc(var(--nav-h) + 16px);
 }
 
 /* Sekcje treściowe: nad warstwą wstęgi „za” (z-index 1) */
