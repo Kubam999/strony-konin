@@ -20,6 +20,7 @@ export default function Realizacje() {
           <h2 className="h2" id="real-tytul">
             Strony, które już zrobiliśmy
           </h2>
+          <p className="lead">Koncepty naszej projektantki Blanki. Najedź, żeby zobaczyć podgląd, kliknij, żeby otworzyć.</p>
         </header>
 
         {filtrWidoczny && (
