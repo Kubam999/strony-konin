@@ -24,7 +24,13 @@ export function maWebGL(): boolean {
   return webgl;
 }
 
-/** Wstęga 3D tylko tam, gdzie ma sens: duży ekran z myszką, WebGL, bez prośby o mniej ruchu. */
+/**
+ * Wstęga 3D tylko tam, gdzie ma sens: szeroki ekran, WebGL, bez prośby o mniej ruchu.
+ * `?3d=1` wymusza scenę (gdy jest WebGL), `?3d=0` wymusza wersję zastępczą.
+ */
 export function wstega3D(): boolean {
+  const wymus = new URLSearchParams(location.search).get('3d');
+  if (wymus === '0') return false;
+  if (wymus === '1') return maWebGL();
   return !ruchOgraniczony() && !waskiEkran() && maWebGL();
 }

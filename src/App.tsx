@@ -16,10 +16,27 @@ const Wstega = lazy(() => import('./components/wstega/Wstega'));
 export default function App() {
   const hero = useRef<HTMLElement>(null);
   const [tryb3D, setTryb3D] = useState(false);
+  // Tryb wybierany reaktywnie: panel podglądu albo okno mogą zmienić szerokość po starcie.
   useEffect(() => {
-    const ma = wstega3D();
-    setTryb3D(ma);
-    document.documentElement.classList.toggle('ma-3d', ma);
+    let timer = 0;
+    const ustaw = () => {
+      const ma = wstega3D();
+      setTryb3D(ma);
+      document.documentElement.classList.toggle('ma-3d', ma);
+    };
+    const naZmiane = () => {
+      clearTimeout(timer);
+      timer = window.setTimeout(ustaw, 150);
+    };
+    ustaw();
+    window.addEventListener('resize', naZmiane);
+    const mq = matchMedia('(prefers-reduced-motion: reduce)');
+    mq.addEventListener('change', naZmiane);
+    return () => {
+      clearTimeout(timer);
+      window.removeEventListener('resize', naZmiane);
+      mq.removeEventListener('change', naZmiane);
+    };
   }, []);
 
   return (
