@@ -1,0 +1,49 @@
+.tasma {
+  margin-inline: calc(-1 * var(--gutter));
+  perspective: 1200px;
+}
+
+.tasma__lista {
+  list-style: none;
+  margin: 0;
+  padding: var(--space-4) var(--gutter);
+  display: flex;
+  gap: var(--space-3);
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  scrollbar-width: none;
+  -webkit-overflow-scrolling: touch;
+}
+.tasma__lista::-webkit-scrollbar {
+  display: none;
+}
+
+.tasma__kafel {
+  flex: 0 0 min(72vw, 320px);
+  scroll-snap-align: center;
+  transform: rotateY(-6deg);
+  transform-origin: center;
+}
+.tasma__kafel a {
+  display: grid;
+  gap: var(--space-2);
+}
+.tasma__kafel img {
+  width: 100%;
+  height: auto;
+  aspect-ratio: 16 / 10;
+  object-fit: cover;
+  object-position: top;
+  border-radius: var(--radius);
+  box-shadow: var(--shadow-tile);
+}
+
+.tasma__podpis {
+  font-size: var(--text-sm);
+  color: var(--ink-2);
+}
+.tasma__podpis strong {
+  color: var(--ink);
+  font-weight: 600;
+  margin-right: 6px;
+}

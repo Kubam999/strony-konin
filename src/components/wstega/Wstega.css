@@ -1,0 +1,61 @@
+.wstega {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.wstega--za {
+  z-index: 1;
+}
+.wstega--przed {
+  z-index: 3;
+}
+.wstega canvas {
+  width: 100% !important;
+  height: 100% !important;
+}
+
+.wstega-przeciaganie {
+  cursor: grabbing;
+  user-select: none;
+}
+.hero--3d {
+  cursor: grab;
+  touch-action: pan-y;
+}
+.hero--3d a,
+.hero--3d button {
+  cursor: pointer;
+}
+
+.wstega__etykieta {
+  position: fixed;
+  left: 0;
+  top: 0;
+  z-index: 40;
+  pointer-events: none;
+  display: none;
+  align-items: baseline;
+  gap: 6px;
+  padding: 8px 12px;
+  border-radius: var(--radius-pill);
+  background: var(--ink);
+  color: var(--bg);
+  font-size: var(--text-sm);
+  white-space: nowrap;
+  will-change: transform;
+}
+.wstega__etykieta.jest {
+  display: flex;
+}
+.wstega__etykieta span {
+  color: var(--accent);
+}
+
+.wstega__pauza {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--space-6);
+  z-index: 5;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(8px);
+}

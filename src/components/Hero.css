@@ -9,7 +9,6 @@
 
 .hero__wrap {
   position: relative;
-  z-index: 1;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -22,8 +21,17 @@
 }
 
 .hero__h {
+  position: relative;
+  z-index: 2; /* między warstwą wstęgi „za” (1) a „przed” (3) */
   font-size: var(--text-hero);
   max-width: 12ch;
+  pointer-events: none;
+}
+
+.hero__eyebrow,
+.hero__dol {
+  position: relative;
+  z-index: 4;
 }
 
 .hero__wiersz {
@@ -71,12 +79,6 @@
   border-top: 1px solid var(--line);
   font-size: var(--text-sm);
   color: var(--ink-2);
-}
-
-.hero__scena {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
 }
 
 @media (max-width: 760px) {

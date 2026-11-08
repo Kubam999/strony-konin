@@ -28,7 +28,9 @@ for (const [nazwa, viewport, mobile] of WIDOKI) {
       await new Promise((r) => setTimeout(r, 120));
     }
     scrollTo(0, 0);
-    await Promise.all([...document.images].map((i) => i.decode().catch(() => {})));
+    // decode() obrazka lazy poza ekranem nigdy się nie kończy, stąd limit czasu
+    const limit = new Promise((r) => setTimeout(r, 1500));
+    await Promise.all([...document.images].map((i) => Promise.race([i.decode().catch(() => {}), limit])));
   });
   await page.waitForTimeout(800);
   await page.screenshot({ path: `${katalog}/${nazwa}${sufiks}-ekran.png` });
