@@ -47,9 +47,11 @@ export default function Wstega({ hero }: Props) {
   // po pół ekranu scrolla, więc kafle są na miejscu, zanim siatka pokaże się w całości
   useEffect(() => {
     const st = ScrollTrigger.create({
-      trigger: '#realizacje',
-      start: 'top 90%',
-      end: () => `+=${Math.round(innerHeight * 0.55)}`,
+      // od pierwszego piksela scrolla (hero zawsze zaczyna na górze), nie od pozycji sekcji,
+      // bo przy niskim hero sekcja realizacji jest widoczna już przy wczytaniu
+      trigger: '#start',
+      start: 'top top',
+      end: () => `+=${Math.round(innerHeight * 0.6)}`,
       onUpdate: (s) => {
         stan.postep = s.progress;
       },

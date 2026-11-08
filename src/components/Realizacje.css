@@ -34,37 +34,12 @@
 }
 
 .real {
-  padding-top: var(--space-6);
+  padding-top: var(--space-4);
 }
 .real__naglowek {
   display: grid;
-  grid-template-columns: minmax(0, 7fr) minmax(0, 5fr);
-  grid-template-areas:
-    'eyebrow eyebrow'
-    'tytul lead';
-  gap: var(--space-4) var(--space-7);
-  align-items: end;
-  margin-bottom: var(--space-6);
-}
-.real__naglowek .eyebrow {
-  grid-area: eyebrow;
-}
-.real__naglowek .h2 {
-  grid-area: tytul;
-}
-.real__naglowek .lead {
-  grid-area: lead;
-  font-size: var(--text-md);
-  max-width: 48ch;
-}
-@media (max-width: 900px) {
-  .real__naglowek {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'eyebrow'
-      'tytul'
-      'lead';
-  }
+  gap: var(--space-3);
+  margin-bottom: var(--space-5);
 }
 
 .real__siatka {

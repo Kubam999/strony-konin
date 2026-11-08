@@ -1,9 +1,9 @@
 .hero {
   position: relative;
   z-index: 2; /* nad warstwą wstęgi „za” (1), pod warstwą „przed” (3) */
-  min-height: min(100svh, 920px);
+  min-height: min(92svh, 840px);
   padding-top: calc(var(--nav-h) + var(--space-6));
-  padding-bottom: var(--space-6);
+  padding-bottom: var(--space-4);
   display: flex;
   overflow: clip;
 }

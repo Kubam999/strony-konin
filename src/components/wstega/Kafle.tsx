@@ -97,8 +97,13 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
 
     // Geometria ekranu: jednostki świata na piksel na płaszczyźnie z = 0
     const u = (2 * KAMERA.position[2] * Math.tan((KAMERA.fov * Math.PI) / 360)) / innerHeight;
-    const heroTop = stan.hero?.getBoundingClientRect().top ?? 0;
-    const przesunHero = -heroTop * u;
+    // Pętla jest wyśrodkowana na hero i skalowana do jego wysokości (nie do wysokości okna),
+    // więc przy niższym hero nie wychodzi na nagłówek ani poza sekcję.
+    const heroRect = stan.hero?.getBoundingClientRect();
+    const heroH = heroRect?.height ?? innerHeight;
+    const heroTop = heroRect?.top ?? 0;
+    const przesunHero = -(heroTop + heroH / 2 - innerHeight / 2) * u;
+    const f = Math.min(1, heroH / innerHeight);
     const siatkaRect = stan.siatka?.getBoundingClientRect();
     const poza = !!siatkaRect && siatkaRect.bottom < -40;
     const p = wygladz(stan.postep);
@@ -117,19 +122,19 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
       // Środek na pętli (z przesunięciem razem z hero) i środek komórki siatki
       const tc = (i / liczbaKafli + stan.offset) % 1;
       krzywa.getPointAt(tc, tmp.p);
-      const ringY = tmp.p.y + przesunHero;
-      let gx = tmp.p.x;
+      const ringY = tmp.p.y * f + przesunHero;
+      let gx = tmp.p.x * f;
       let gy = ringY;
-      let gw = SZER_KAFLA;
-      let gh = WYS_KAFLA;
+      let gw = SZER_KAFLA * f;
+      let gh = WYS_KAFLA * f;
       if (rect) {
         gx = (rect.left + rect.width / 2 - innerWidth / 2) * u;
         gy = KAMERA.position[1] - (rect.top + rect.height / 2 - innerHeight / 2) * u;
         gw = rect.width * u;
         gh = rect.height * u;
       }
-      const zc = tmp.p.z * (1 - p);
-      const zaTekstem = zc < Z_TEKSTU;
+      const zc = tmp.p.z * f * (1 - p);
+      const zaTekstem = zc < Z_TEKSTU * f;
 
       // Kopie i odfiltrowane kafle znikają w miarę składania siatki
       const celAlpha = kopia || !rect ? 1 - p : 1;
@@ -180,9 +185,9 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
         // poza na pętli
         const t = (((tc + znak * x * 2 * polSzer * skala) % 1) + 1) % 1;
         krzywa.getPointAt(t, tmp.v);
-        const rx = tmp.v.x;
-        const ry = tmp.v.y + przesunHero + y * WYS_KAFLA * skala;
-        const rz = tmp.v.z;
+        const rx = tmp.v.x * f;
+        const ry = (tmp.v.y + y * WYS_KAFLA * skala) * f + przesunHero;
+        const rz = tmp.v.z * f;
         // poza w siatce
         const sx = gx + x * gw;
         const sy = gy + y * gh;
