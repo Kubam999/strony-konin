@@ -1,5 +1,6 @@
 .hero {
   position: relative;
+  z-index: 2; /* nad warstwą wstęgi „za” (1), pod warstwą „przed” (3) */
   min-height: 100svh;
   padding-top: calc(var(--nav-h) + var(--space-6));
   padding-bottom: var(--space-6);
@@ -33,6 +34,17 @@
   position: relative;
   z-index: 4;
 }
+
+/* Przycisk pauzy wstęgi */
+.wstega__pauza {
+  position: absolute;
+  right: var(--gutter);
+  bottom: var(--space-6);
+  z-index: 5;
+  background: color-mix(in srgb, var(--bg) 80%, transparent);
+  backdrop-filter: blur(8px);
+}
+
 
 .hero__wiersz {
   display: block;

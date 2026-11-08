@@ -1,5 +1,6 @@
+/* Dwie stałe warstwy WebGL: za treścią strony (1) i przed nią (3). Treść sekcji ma z-index 2. */
 .wstega {
-  position: absolute;
+  position: fixed;
   inset: 0;
   pointer-events: none;
 }
@@ -49,13 +50,4 @@
 }
 .wstega__etykieta span {
   color: var(--accent);
-}
-
-.wstega__pauza {
-  position: absolute;
-  right: var(--gutter);
-  bottom: var(--space-6);
-  z-index: 5;
-  background: color-mix(in srgb, var(--bg) 80%, transparent);
-  backdrop-filter: blur(8px);
 }

@@ -1,5 +1,36 @@
 .real {
+  position: relative;
+  z-index: 2; /* nad warstwą wstęgi „za” */
   padding-block: var(--section);
+}
+
+.real__filtr {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--space-2);
+  margin-bottom: var(--space-6);
+}
+.chip {
+  min-height: 40px;
+  padding: 0 14px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--line-strong);
+  font-size: var(--text-sm);
+  font-weight: 500;
+  text-transform: capitalize;
+  transition: background-color var(--dur-fast) var(--ease-out), color var(--dur-fast) var(--ease-out);
+}
+.chip span {
+  color: var(--ink-3);
+  margin-left: 4px;
+}
+.chip--aktywny {
+  background: var(--ink);
+  color: var(--bg);
+  border-color: var(--ink);
+}
+.chip--aktywny span {
+  color: var(--accent);
 }
 
 .real__naglowek {
@@ -29,6 +60,7 @@
   border-radius: var(--radius);
   overflow: hidden;
   box-shadow: var(--shadow-tile);
+  transition: transform var(--dur-base) var(--ease-out);
 }
 .kafel__ramka img {
   width: 100%;
@@ -36,13 +68,45 @@
   object-fit: cover;
   object-position: top;
 }
+/* W trybie 3D obraz rysuje scena WebGL; komórka zostaje jako miejsce lądowania kafla */
+.ma-3d .kafel__ramka {
+  background: var(--surface) !important;
+  box-shadow: none;
+  outline: 1px dashed var(--line);
+  outline-offset: -1px;
+}
+.ma-3d .kafel__ramka img {
+  opacity: 0;
+}
+.kafel__link:hover .kafel__nazwa {
+  color: var(--accent);
+}
+.kafel__otworz {
+  grid-area: otworz;
+  color: var(--ink-3);
+  font-size: var(--text-xs);
+  justify-self: end;
+  opacity: 0;
+  transition: opacity var(--dur-fast) var(--ease-out);
+}
+.kafel__link:hover .kafel__otworz,
+.kafel__link:focus-visible .kafel__otworz {
+  opacity: 1;
+}
+.kafel__link:focus-visible {
+  outline: none;
+}
+.kafel__link:focus-visible .kafel__ramka {
+  outline: 2px solid var(--accent);
+  outline-offset: 3px;
+}
 
 .kafel__podpis {
   display: grid;
   grid-template-columns: auto 1fr auto;
   grid-template-areas:
     'nr nazwa branza'
-    'nr rodzaj rodzaj';
+    'nr rodzaj otworz';
   column-gap: var(--space-3);
   font-size: var(--text-sm);
   line-height: 1.35;

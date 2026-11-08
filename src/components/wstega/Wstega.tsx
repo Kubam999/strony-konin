@@ -1,31 +1,37 @@
 import { Suspense, useCallback, useEffect, useRef, useState } from 'react';
 import { Canvas } from '@react-three/fiber';
 import { Cache } from 'three';
+import gsap from 'gsap';
+import { ScrollTrigger } from 'gsap/ScrollTrigger';
 import { REALIZACJE } from '../../data/realizacje';
 import Kafle from './Kafle';
-import { stan } from './stan';
+import { stan, KAMERA } from './stan';
 import './Wstega.css';
 
+gsap.registerPlugin(ScrollTrigger);
 Cache.enabled = true;
 
 const MIN_KAFLI = 10;
-const KAMERA = { position: [0, 0.2, 6.2] as [number, number, number], fov: 38 };
 
 interface Props {
-  /** Element, z którego scena bierze zdarzenia wskaźnika (cała sekcja hero) */
-  zrodloZdarzen: React.RefObject<HTMLElement | null>;
+  /** Sekcja hero: źródło zdarzeń wskaźnika dla sceny i punkt odniesienia pętli */
+  hero: React.RefObject<HTMLElement | null>;
 }
 
 /**
- * Wstęga realizacji w dwóch warstwach WebGL: jedna za nagłówkiem, druga przed nim.
+ * Wstęga realizacji w dwóch stałych warstwach WebGL: jedna za treścią strony, druga przed nią.
  * Obie rysują te same kafle, ale każda tylko te po swojej stronie płaszczyzny tekstu,
- * więc kafle wjeżdżają zza napisu i wychodzą przed niego.
+ * więc na pętli kafle wjeżdżają zza nagłówka i wychodzą przed niego. Przy scrollu kafle
+ * przelatują z pętli do komórek siatki w sekcji realizacji i tam zostają.
  */
-export default function Wstega({ zrodloZdarzen }: Props) {
+export default function Wstega({ hero }: Props) {
   const liczbaKafli = Math.max(MIN_KAFLI, REALIZACJE.length);
-  const [pauza, setPauza] = useState(() => new URLSearchParams(location.search).get('pauza') === '1');
   const [hover, setHover] = useState(-1);
   const etykieta = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    stan.hero = hero.current;
+  }, [hero]);
 
   const onHover = useCallback((i: number, x: number, y: number) => {
     setHover(i);
@@ -33,15 +39,29 @@ export default function Wstega({ zrodloZdarzen }: Props) {
     if (el && i >= 0) el.style.transform = `translate(${x + 16}px, ${y + 18}px)`;
   }, []);
 
-  // Przeciąganie wstęgi palcem lub myszką po całym hero (poza linkami i przyciskami)
+  // Postęp przejścia pętla -> siatka: od wejścia siatki na ekran do jej ustawienia w górnej części
   useEffect(() => {
-    const el = zrodloZdarzen.current;
+    const st = ScrollTrigger.create({
+      trigger: '#realizacje .real__siatka',
+      start: 'top 100%',
+      end: 'top 38%',
+      onUpdate: (s) => {
+        stan.postep = s.progress;
+      },
+    });
+    return () => st.kill();
+  }, []);
+
+  // Przeciąganie wstęgi myszką po hero (poza linkami i przyciskami)
+  useEffect(() => {
+    const el = hero.current;
     if (!el) return;
     let x0 = 0;
     let ostatniX = 0;
     let ostatniCzas = 0;
     let predkosc = 0;
     const down = (e: PointerEvent) => {
+      if (stan.postep > 0.3) return;
       if ((e.target as HTMLElement).closest('a, button, input, textarea, select')) return;
       stan.przeciaganie = true;
       stan.przesunieto = false;
@@ -68,7 +88,6 @@ export default function Wstega({ zrodloZdarzen }: Props) {
       stan.przeciaganie = false;
       stan.bezwladnosc = Math.max(-0.6, Math.min(0.6, predkosc));
       el.classList.remove('wstega-przeciaganie');
-      // kliknięcie w kafel sprawdza przesunieto; zerujemy chwilę później
       setTimeout(() => {
         stan.przesunieto = false;
       }, 0);
@@ -83,22 +102,17 @@ export default function Wstega({ zrodloZdarzen }: Props) {
       window.removeEventListener('pointerup', up);
       window.removeEventListener('pointercancel', up);
     };
-  }, [zrodloZdarzen]);
-
-  const przelaczPauze = () => {
-    stan.pauza = !stan.pauza;
-    setPauza(stan.pauza);
-  };
+  }, [hero]);
 
   const wspolne = {
     camera: KAMERA,
     dpr: [1, 1.5] as [number, number],
     gl: { antialias: true, alpha: true, powerPreference: 'high-performance' as const },
-    eventSource: zrodloZdarzen as React.RefObject<HTMLElement>,
+    eventSource: hero as React.RefObject<HTMLElement>,
     eventPrefix: 'client' as const,
     flat: true,
   };
-  const aktywna = hover >= 0 ? REALIZACJE[hover % REALIZACJE.length] : null;
+  const aktywna = hover >= 0 && stan.postep < 0.5 ? REALIZACJE[hover % REALIZACJE.length] : null;
 
   return (
     <>
@@ -124,16 +138,6 @@ export default function Wstega({ zrodloZdarzen }: Props) {
           </>
         )}
       </div>
-
-      <button
-        type="button"
-        className="btn btn--ghost btn--sm wstega__pauza"
-        onClick={przelaczPauze}
-        aria-pressed={pauza}
-        aria-label={pauza ? 'Wznów ruch wstęgi realizacji' : 'Zatrzymaj ruch wstęgi realizacji'}
-      >
-        {pauza ? 'Wznów' : 'Pauza'}
-      </button>
     </>
   );
 }

@@ -1,12 +1,9 @@
-import { lazy, Suspense, useEffect, useRef, useState } from 'react';
+import type { RefObject } from 'react';
 import { HASLO, PODTYTUL } from '../config/site';
 import { REALIZACJE } from '../data/realizacje';
-import { wstega3D } from '../lib/srodowisko';
 import WstegaMobilna from './wstega/WstegaMobilna';
+import PrzyciskPauzy from './wstega/PrzyciskPauzy';
 import './Hero.css';
-
-// Scena WebGL ładuje się osobno i tylko tam, gdzie ma sens.
-const Wstega = lazy(() => import('./wstega/Wstega'));
 
 /** Składa hasło: `|` łamie wiersz, `*słowo*` jest kursywą Fraunces w kolorze akcentu. */
 function Haslo({ tekst }: { tekst: string }) {
@@ -29,15 +26,15 @@ function Haslo({ tekst }: { tekst: string }) {
   );
 }
 
-export default function Hero() {
-  const sekcja = useRef<HTMLElement>(null);
-  const [tryb3D, setTryb3D] = useState(false);
-  useEffect(() => {
-    setTryb3D(wstega3D());
-  }, []);
+interface Props {
+  ref: RefObject<HTMLElement | null>;
+  /** Czy działa wstęga WebGL (wtedy bez taśmy CSS, z przyciskiem pauzy) */
+  tryb3D: boolean;
+}
 
+export default function Hero({ ref, tryb3D }: Props) {
   return (
-    <section className={`hero${tryb3D ? ' hero--3d' : ''}`} id="start" ref={sekcja}>
+    <section className={`hero${tryb3D ? ' hero--3d' : ''}`} id="start" ref={ref}>
       <div className="container hero__wrap">
         <p className="eyebrow hero__eyebrow">Zespół z Konina · strony dla lokalnych firm</p>
 
@@ -65,11 +62,7 @@ export default function Hero() {
         </div>
       </div>
 
-      {tryb3D && (
-        <Suspense fallback={null}>
-          <Wstega zrodloZdarzen={sekcja} />
-        </Suspense>
-      )}
+      {tryb3D && <PrzyciskPauzy />}
     </section>
   );
 }

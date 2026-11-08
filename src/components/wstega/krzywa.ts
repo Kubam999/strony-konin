@@ -22,7 +22,7 @@ export function zbudujKrzywa(liczbaKafli: number): CatmullRomCurve3 {
   // Pętla leży poziomo jak taśmociąg, lekko uniesiona z tyłu: przód przechodzi nisko
   // przed nagłówkiem i blisko kamery, tył wyżej, za nagłówkiem i dalej.
   const obrot = new Euler(MathUtils.degToRad(-38), MathUtils.degToRad(8), MathUtils.degToRad(-8));
-  const srodek = new Vector3(0.9, 0.2, -3.2);
+  const srodek = new Vector3(0.9, 0.0, -3.2);
   const punkty: Vector3[] = [];
   const N = 64;
   for (let i = 0; i < N; i++) {
