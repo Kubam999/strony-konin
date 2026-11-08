@@ -34,7 +34,7 @@
 }
 
 .real {
-  padding-top: var(--space-8);
+  padding-top: var(--space-6);
 }
 .real__naglowek {
   display: grid;
@@ -44,7 +44,7 @@
     'tytul lead';
   gap: var(--space-4) var(--space-7);
   align-items: end;
-  margin-bottom: var(--space-7);
+  margin-bottom: var(--space-6);
 }
 .real__naglowek .eyebrow {
   grid-area: eyebrow;
@@ -73,7 +73,7 @@
   padding: 0;
   display: grid;
   grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: var(--space-7) var(--space-5);
+  gap: var(--space-6) var(--space-5);
 }
 
 .kafel__link {

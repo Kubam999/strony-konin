@@ -41,7 +41,7 @@
   --space-10: 144px;
   --container: 1440px;
   --gutter: clamp(16px, 1rem + 1.6vw, 40px);
-  --section: clamp(72px, 6vw + 40px, 144px);
+  --section: clamp(48px, 3vw + 24px, 80px);
   --nav-h: 64px;
 
   /* Kształty i cienie */

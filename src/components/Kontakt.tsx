@@ -10,7 +10,7 @@ export default function Kontakt() {
   // Formularz na razie tylko wizualny: nic nie wysyła.
   const wyslij = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    setKomunikat(`Formularz nie jest jeszcze podłączony. Na razie napisz do nas na ${KONTAKT.email}.`);
+    setKomunikat(`Formularz nie jest jeszcze podłączony. Na razie napisz na ${KONTAKT.email}.`);
   };
 
   return (
@@ -19,9 +19,8 @@ export default function Kontakt() {
         <div className="kontakt__info">
           <p className="eyebrow">Kontakt</p>
           <h2 className="h2" id="kontakt-tytul">
-            Napisz do nas
+            Nie mamy cennika. Napisz, a szybko przygotujemy wycenę.
           </h2>
-          <p className="lead">Odpowiadamy w dzień roboczy.</p>
           <dl className="kontakt__dane">
             <div>
               <dt>E-mail</dt>
@@ -59,16 +58,16 @@ export default function Kontakt() {
               ))}
             </select>
           </div>
-          <div className="pole pole--pelne">
+          <div className="pole">
             <label htmlFor="f-wiadomosc">Wiadomość</label>
-            <textarea id="f-wiadomosc" name="wiadomosc" rows={5} placeholder="Czym się zajmujesz i co ma robić strona?" />
+            <textarea id="f-wiadomosc" name="wiadomosc" rows={3} placeholder="Czym się zajmujesz i co ma robić strona?" />
           </div>
-          <label className="zgoda pole--pelne">
+          <label className="zgoda">
             <input type="checkbox" name="zgoda" />
             <span>Zgadzam się na kontakt w sprawie wyceny ({BRAND}).</span>
           </label>
-          <div className="formularz__dol pole--pelne">
-            <button type="submit" className="btn btn--ink">
+          <div className="formularz__dol">
+            <button type="submit" className="btn btn--accent">
               Wyślij wiadomość
             </button>
             <p className="formularz__status" role="status" aria-live="polite">
