@@ -33,11 +33,15 @@ export default function Wstega({ hero }: Props) {
     stan.hero = hero.current;
   }, [hero]);
 
-  const onHover = useCallback((i: number, x: number, y: number) => {
-    setHover(i);
-    const el = etykieta.current;
-    if (el && i >= 0) el.style.transform = `translate(${x + 16}px, ${y + 18}px)`;
-  }, []);
+  const onHover = useCallback(
+    (i: number, x: number, y: number) => {
+      setHover(i);
+      hero.current?.classList.toggle('hero--nad-kaflem', i >= 0);
+      const el = etykieta.current;
+      if (el && i >= 0) el.style.transform = `translate(${x + 16}px, ${y + 18}px)`;
+    },
+    [hero],
+  );
 
   // Postęp przejścia pętla -> siatka: zaczyna się, gdy sekcja realizacji wjeżdża, i kończy
   // po pół ekranu scrolla, więc kafle są na miejscu, zanim siatka pokaże się w całości

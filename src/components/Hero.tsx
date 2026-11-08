@@ -1,8 +1,6 @@
 import type { RefObject } from 'react';
 import { HASLO, PODTYTUL } from '../config/site';
-import { REALIZACJE } from '../data/realizacje';
 import WstegaMobilna from './wstega/WstegaMobilna';
-import PrzyciskPauzy from './wstega/PrzyciskPauzy';
 import './Hero.css';
 
 /** Składa hasło: `|` łamie wiersz, `*słowo*` jest kursywą Fraunces w kolorze akcentu. */
@@ -28,7 +26,7 @@ function Haslo({ tekst }: { tekst: string }) {
 
 interface Props {
   ref: RefObject<HTMLElement | null>;
-  /** Czy działa wstęga WebGL (wtedy bez taśmy CSS, z przyciskiem pauzy) */
+  /** Czy działa wstęga WebGL (wtedy bez taśmy CSS) */
   tryb3D: boolean;
 }
 
@@ -46,23 +44,11 @@ export default function Hero({ ref, tryb3D }: Props) {
 
         <div className="hero__dol">
           <p className="lead hero__lead">{PODTYTUL}</p>
-          <div className="hero__cta">
-            <a className="btn btn--ink" href="#realizacje">
-              Zobacz realizacje
-            </a>
-            <a className="btn btn--ghost" href="#kontakt">
-              Napisz do nas
-            </a>
-          </div>
-          <p className="hero__meta">
-            <span>{REALIZACJE.length} realizacji</span>
-            <span>Projekt, wdrożenie, opieka</span>
-            <span>Konin i okolice</span>
-          </p>
+          <a className="btn btn--ink" href="#kontakt">
+            Napisz do nas
+          </a>
         </div>
       </div>
-
-      {tryb3D && <PrzyciskPauzy />}
     </section>
   );
 }

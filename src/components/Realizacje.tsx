@@ -20,10 +20,7 @@ export default function Realizacje() {
           <h2 className="h2" id="real-tytul">
             Strony, które już zrobiliśmy
           </h2>
-          <p className="lead">
-            Każdy projekt oznaczony jako koncept to własna propozycja naszej projektantki Blanki: tak wyglądałaby
-            strona dla firmy z tej branży. Najedź, żeby zobaczyć podgląd, kliknij, żeby otworzyć stronę.
-          </p>
+          <p className="lead">Koncepty naszej projektantki Blanki. Najedź, żeby zobaczyć podgląd, kliknij, żeby otworzyć.</p>
         </header>
 
         {filtrWidoczny && (
@@ -102,9 +99,7 @@ export default function Realizacje() {
                     <span className="kafel__nr">{String(i + 1).padStart(2, '0')}</span>
                     <span className="kafel__nazwa">{r.nazwa}</span>
                     <span className="kafel__branza">{r.branza}</span>
-                    <span className="kafel__rodzaj">
-                      {r.rodzaj === 'koncept' ? 'Projekt koncepcyjny' : 'Wdrożenie'} · {r.autor}
-                    </span>
+                    <span className="kafel__rodzaj">{r.rodzaj === 'koncept' ? 'Koncept' : 'Wdrożenie'} · {r.autor}</span>
                     <span className="kafel__otworz">Otwórz na żywo ↗</span>
                   </span>
                 </a>

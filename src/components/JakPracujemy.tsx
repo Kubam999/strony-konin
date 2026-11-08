@@ -1,22 +1,10 @@
 import './JakPracujemy.css';
 
 const KROKI = [
-  {
-    nazwa: 'Rozmowa',
-    opis: 'Pół godziny o Twojej firmie: dla kogo pracujesz, co ma robić strona i co już masz. Po rozmowie dostajesz wycenę.',
-  },
-  {
-    nazwa: 'Projekt',
-    opis: 'Makieta strony do akceptacji: układ, kolory, teksty. Poprawiamy, aż powiesz, że to jest to.',
-  },
-  {
-    nazwa: 'Wdrożenie',
-    opis: 'Strona pod Twoją domeną, szybka, działa dobrze na telefonie i w Google. Przed startem oglądasz ją w całości.',
-  },
-  {
-    nazwa: 'Opieka',
-    opis: 'Po starcie zostajemy: poprawki, nowe treści, aktualizacje i kopie zapasowe. Jeden kontakt, gdy coś potrzeba.',
-  },
+  { nazwa: 'Rozmowa', opis: 'Pół godziny o firmie i o tym, co ma robić strona.' },
+  { nazwa: 'Projekt', opis: 'Makieta do akceptacji, poprawiamy aż pasuje.' },
+  { nazwa: 'Wdrożenie', opis: 'Strona pod Twoją domeną, szybka i na telefon.' },
+  { nazwa: 'Opieka', opis: 'Poprawki, nowe treści i aktualizacje po starcie.' },
 ];
 
 export default function JakPracujemy() {
@@ -24,9 +12,8 @@ export default function JakPracujemy() {
     <section className="sekcja jak" id="jak-pracujemy" aria-labelledby="jak-tytul">
       <div className="container">
         <header className="sekcja__naglowek">
-          <p className="eyebrow">Jak pracujemy</p>
           <h2 className="h2" id="jak-tytul">
-            Od rozmowy do strony w czterech krokach
+            Jak pracujemy
           </h2>
         </header>
         <ol className="jak__kroki">

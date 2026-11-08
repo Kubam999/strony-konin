@@ -21,9 +21,7 @@ export default function Kontakt() {
           <h2 className="h2" id="kontakt-tytul">
             Napisz do nas
           </h2>
-          <p className="lead">
-            Opisz w kilku zdaniach firmę i to, co ma robić strona. Odpowiadamy w dzień roboczy, zwykle tego samego dnia.
-          </p>
+          <p className="lead">Odpowiadamy w dzień roboczy.</p>
           <dl className="kontakt__dane">
             <div>
               <dt>E-mail</dt>
@@ -67,9 +65,7 @@ export default function Kontakt() {
           </div>
           <label className="zgoda pole--pelne">
             <input type="checkbox" name="zgoda" />
-            <span>
-              Zgadzam się na kontakt w sprawie wyceny. Dane trafiają tylko do {BRAND} i służą wyłącznie odpowiedzi.
-            </span>
+            <span>Zgadzam się na kontakt w sprawie wyceny ({BRAND}).</span>
           </label>
           <div className="formularz__dol pole--pelne">
             <button type="submit" className="btn btn--ink">

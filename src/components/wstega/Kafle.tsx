@@ -1,6 +1,8 @@
 import { useEffect, useMemo, useRef } from 'react';
 import { useFrame, useLoader, type ThreeEvent } from '@react-three/fiber';
 import { Mesh, PlaneGeometry, SRGBColorSpace, TextureLoader, Vector3, type BufferAttribute, type Texture } from 'three';
+
+const bezRaycastu = () => {};
 import type { Realizacja } from '../../data/realizacje';
 import { stan, CZAS_OBIEGU, Z_TEKSTU, KAMERA } from './stan';
 import { zbudujKrzywa, SZER_KAFLA, WYS_KAFLA } from './krzywa';
@@ -30,6 +32,8 @@ interface StanKafla {
   mix: number;
   przesuw: number;
   alpha: number;
+  /** Podświetlenie po najechaniu na pętli, 0..1, wygładzane */
+  podswietl: number;
 }
 
 const wygladz = (p: number) => (p <= 0 ? 0 : p >= 1 ? 1 : 1 - (1 - p) ** 3);
@@ -62,7 +66,7 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
   );
   const kafle = useRef<StanKafla[]>([]);
   if (kafle.current.length !== liczbaKafli) {
-    kafle.current = Array.from({ length: liczbaKafli }, () => ({ pelna: null, laduje: false, amp: 0, mix: 0, przesuw: 0, alpha: 1 }));
+    kafle.current = Array.from({ length: liczbaKafli }, () => ({ pelna: null, laduje: false, amp: 0, mix: 0, przesuw: 0, alpha: 1, podswietl: 0 }));
   }
   const loader = useMemo(() => new TextureLoader(), []);
 
@@ -131,11 +135,14 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
       const celAlpha = kopia || !rect ? 1 - p : 1;
       k.alpha = dazy(k.alpha, celAlpha, krok, 10);
       mesh.visible = !poza && (warstwa === 'za' ? zaTekstem : !zaTekstem) && k.alpha > 0.01;
+      // Kafel niewidoczny w tej warstwie nie łapie kursora: jego geometria nie jest odświeżana
+      mesh.raycast = mesh.visible ? Mesh.prototype.raycast : bezRaycastu;
       if (!mesh.visible) continue;
 
       // Hover: na pętli z raycastu sceny, w siatce z DOM
       const hov = p < 0.5 ? stan.hover === i : stan.hoverSiatka === r && !kopia;
-      const skala = p < 0.5 && hov ? 1.06 : 1;
+      k.podswietl = dazy(k.podswietl, hov && p < 0.5 ? 1 : 0, krok, hov ? 12 : 6);
+      const skala = 1 + 0.03 * k.podswietl;
       if (hov && p >= 0.5 && !k.pelna && !k.laduje) {
         k.laduje = true;
         loader.load(`${BASE}realizacje/${realizacje[r].slug}-pelna.webp`, (t) => {
@@ -151,8 +158,10 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
       mat.uniforms.uAmp.value = k.amp;
       mat.uniforms.uMix.value = k.mix;
       mat.uniforms.uPrzesuw.value = k.przesuw;
-      // na pętli kafle za nagłówkiem są przygaszone, żeby tekst był czytelny
-      mat.uniforms.uAlpha.value = k.alpha * (warstwa === 'za' ? 0.45 + 0.55 * p : 1);
+      // na pętli kafle za nagłówkiem są przygaszone, żeby tekst był czytelny; najechany się rozjaśnia
+      const przygaszenie = warstwa === 'za' ? 0.45 + 0.55 * Math.max(p, k.podswietl) : 1;
+      mat.uniforms.uAlpha.value = k.alpha * przygaszenie;
+      mat.uniforms.uJasnosc.value = 0.1 * k.podswietl;
       mat.uniforms.uWiatr.value = p;
       mat.uniforms.uCzas.value = stan.czas + i * 1.7;
       if (hov) mat.uniforms.uPunkt.value.set(stan.punkt.x, stan.punkt.y);

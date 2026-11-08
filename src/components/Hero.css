@@ -37,15 +37,6 @@
   z-index: 4;
 }
 
-/* Przycisk pauzy wstęgi */
-.wstega__pauza {
-  position: absolute;
-  right: var(--gutter);
-  bottom: var(--space-6);
-  z-index: 5;
-  background: color-mix(in srgb, var(--bg) 80%, transparent);
-  backdrop-filter: blur(8px);
-}
 
 
 .hero__wiersz {
@@ -64,49 +55,18 @@
 }
 
 .hero__dol {
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  grid-template-areas:
-    'lead cta'
-    'meta meta';
+  display: flex;
+  justify-content: space-between;
   align-items: end;
   gap: var(--space-5) var(--space-7);
-}
-
-.hero__lead {
-  grid-area: lead;
-}
-
-.hero__cta {
-  grid-area: cta;
-  display: flex;
   flex-wrap: wrap;
-  gap: var(--space-3);
-}
-
-.hero__meta {
-  grid-area: meta;
-  display: flex;
-  flex-wrap: wrap;
-  gap: var(--space-2) var(--space-6);
-  padding-top: var(--space-5);
-  border-top: 1px solid var(--line);
-  font-size: var(--text-sm);
-  color: var(--ink-2);
 }
 
 @media (max-width: 760px) {
   .hero {
     padding-top: calc(var(--nav-h) + var(--space-4));
   }
-  .hero__dol {
-    grid-template-columns: 1fr;
-    grid-template-areas:
-      'lead'
-      'cta'
-      'meta';
-  }
-  .hero__cta .btn {
-    flex: 1 1 auto;
+  .hero__dol .btn {
+    width: 100%;
   }
 }

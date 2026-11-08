@@ -24,7 +24,8 @@
   touch-action: pan-y;
 }
 .hero--3d a,
-.hero--3d button {
+.hero--3d button,
+.hero--nad-kaflem {
   cursor: pointer;
 }
 

@@ -19,9 +19,7 @@ export default function Footer() {
         </nav>
       </div>
       <div className="container stopka__dol">
-        <p>
-          Projekty koncepcyjne to własne koncepty naszej projektantki Blanki, nie wdrożenia dla istniejących firm.
-        </p>
+        <p>Koncepty to własne projekty naszej projektantki Blanki.</p>
         <p>© {new Date().getFullYear()} {BRAND}</p>
       </div>
     </footer>

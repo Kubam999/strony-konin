@@ -18,6 +18,7 @@ export function stworzMaterial(mapa: Texture): ShaderMaterial {
       uCzas: { value: 0 },
       uAmp: { value: 0 },
       uWiatr: { value: 0 },
+      uJasnosc: { value: 0 },
       uPunkt: { value: new Vector2(0.5, 0.5) },
     },
     vertexShader: /* glsl */ `
@@ -44,6 +45,7 @@ export function stworzMaterial(mapa: Texture): ShaderMaterial {
       uniform float uMix;
       uniform float uPrzesuw;
       uniform float uAlpha;
+      uniform float uJasnosc;
       varying vec2 vUv;
       void main() {
         vec4 a = texture2D(uMap, vUv);
@@ -51,6 +53,7 @@ export function stworzMaterial(mapa: Texture): ShaderMaterial {
         float v = 1.0 - (o + (1.0 - vUv.y) * uF);
         vec4 b = texture2D(uPelna, vec2(vUv.x, v));
         gl_FragColor = mix(a, b, uMix);
+        gl_FragColor.rgb = mix(gl_FragColor.rgb, vec3(1.0), uJasnosc);
         gl_FragColor.a *= uAlpha;
         #include <tonemapping_fragment>
         #include <colorspace_fragment>

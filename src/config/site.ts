@@ -5,8 +5,7 @@ export const BRAND = 'Studio Konin';
 // Hasło hero. Słowo w gwiazdkach jest składane kursywą Fraunces, pionowa kreska łamie wiersz.
 export const HASLO = 'Strony, które|*pracują* na firmę';
 
-export const PODTYTUL =
-  'Trzyosobowy zespół z Konina. Projektujemy i wdrażamy strony dla gabinetów, warsztatów, sklepów i lokali, które chcą dobrze wyglądać w internecie.';
+export const PODTYTUL = 'Trzyosobowy zespół z Konina. Strony dla gabinetów, warsztatów, sklepów i lokali.';
 
 export const META_OPIS =
   'Trzyosobowy zespół z Konina. Robimy strony internetowe dla lokalnych firm: od wizytówki po rozbudowaną stronę z rezerwacją. Zobacz realizacje i napisz do nas po wycenę.';
