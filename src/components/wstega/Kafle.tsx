@@ -5,7 +5,7 @@ import { Mesh, PlaneGeometry, SRGBColorSpace, TextureLoader, Vector3, type Buffe
 const bezRaycastu = () => {};
 import type { Realizacja } from '../../data/realizacje';
 import { stan, CZAS_OBIEGU, Z_TEKSTU, KAMERA } from './stan';
-import { zbudujKrzywa, SZER_KAFLA, WYS_KAFLA } from './krzywa';
+import { zbudujKrzywa, SZER_KAFLA, WYS_KAFLA, SRODEK_Y } from './krzywa';
 import { stworzMaterial } from './material';
 
 export type Warstwa = 'za' | 'przed';
@@ -36,6 +36,14 @@ interface StanKafla {
   podswietl: number;
 }
 
+/** Jaka część przejścia to opóźnienie ostatniego kafla względem pierwszego */
+const OPOZNIENIE = 0.55;
+/** Ile obiegu pętli kafel robi dodatkowo, schodząc po spirali */
+const OBROT_SPIRALI = 0.6;
+const gladkiProg = (a: number, b: number, x: number) => {
+  const t = Math.min(1, Math.max(0, (x - a) / (b - a)));
+  return t * t * (3 - 2 * t);
+};
 const wygladz = (p: number) => (p <= 0 ? 0 : p >= 1 ? 1 : 1 - (1 - p) ** 3);
 const dazy = (a: number, cel: number, krok: number, tempo: number) => a + (cel - a) * (1 - Math.exp(-krok * tempo));
 
@@ -115,12 +123,19 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
       if (!mesh) continue;
       const r = i % n;
       const kopia = i >= n;
+      // Kopie (powtórzenia realizacji na pętli) schodzą po spirali razem z resztą, ale nie
+      // wsuwają się do siatki: znikają pod koniec zejścia
       const rect = recty[r];
       const k = kafle.current[i];
       const mat = materialy[i];
 
-      // Środek na pętli (z przesunięciem razem z hero) i środek komórki siatki
-      const tc = (i / liczbaKafli + stan.offset) % 1;
+      // Każdy kafel ma własny postęp, opóźniony według miejsca na pętli: schodzą jeden za drugim,
+      // więc pętla rozwija się w spiralę zamiast opadać naraz.
+      const pi = Math.min(1, Math.max(0, (stan.postep - (i / liczbaKafli) * OPOZNIENIE) / (1 - OPOZNIENIE)));
+      const e = pi * pi * (3 - 2 * pi); // zejście po spirali
+      const bl = kopia || !rect ? 0 : gladkiProg(0.45, 1, pi); // wsuwanie się do komórki siatki
+      // W trakcie zejścia kafel dalej krąży po pętli (dodatkowe pół obiegu)
+      const tc = (((i / liczbaKafli + stan.offset + OBROT_SPIRALI * e) % 1) + 1) % 1;
       krzywa.getPointAt(tc, tmp.p);
       const ringY = tmp.p.y * f + przesunHero;
       let gx = tmp.p.x * f;
@@ -133,12 +148,14 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
         gw = rect.width * u;
         gh = rect.height * u;
       }
-      const zc = tmp.p.z * f * (1 - p);
+      // O ile cała pętla opada dla tego kafla: od środka pętli do wysokości jego komórki
+      const opad = (gy - (SRODEK_Y * f + przesunHero)) * e;
+      const zc = tmp.p.z * f * (1 - bl);
       const zaTekstem = zc < Z_TEKSTU * f;
 
       // Kopie i odfiltrowane kafle znikają w miarę składania siatki
-      const celAlpha = kopia || !rect ? 1 - p : 1;
-      k.alpha = dazy(k.alpha, celAlpha, krok, 10);
+      const celAlpha = kopia || !rect ? 1 - gladkiProg(0.3, 0.8, pi) : 1;
+      k.alpha = dazy(k.alpha, celAlpha, krok, 14);
       mesh.visible = !poza && (warstwa === 'za' ? zaTekstem : !zaTekstem) && k.alpha > 0.01;
       // Kafel niewidoczny w tej warstwie nie łapie kursora: jego geometria nie jest odświeżana
       mesh.raycast = mesh.visible ? Mesh.prototype.raycast : bezRaycastu;
@@ -164,10 +181,12 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
       mat.uniforms.uMix.value = k.mix;
       mat.uniforms.uPrzesuw.value = k.przesuw;
       // na pętli kafle za nagłówkiem są przygaszone, żeby tekst był czytelny; najechany się rozjaśnia
-      const przygaszenie = warstwa === 'za' ? 0.45 + 0.55 * Math.max(p, k.podswietl) : 1;
+      const przygaszenie = warstwa === 'za' ? 0.45 + 0.55 * Math.max(e, k.podswietl) : 1;
       mat.uniforms.uAlpha.value = k.alpha * przygaszenie;
+      // półprzezroczysty kafel nie zasłania głębią tych, które są za nim
+      mat.depthWrite = k.alpha > 0.98;
       mat.uniforms.uJasnosc.value = 0.1 * k.podswietl;
-      mat.uniforms.uWiatr.value = p;
+      mat.uniforms.uWiatr.value = bl;
       mat.uniforms.uCzas.value = stan.czas + i * 1.7;
       if (hov) mat.uniforms.uPunkt.value.set(stan.punkt.x, stan.punkt.y);
 
@@ -182,16 +201,16 @@ export default function Kafle({ realizacje, liczbaKafli, warstwa, prowadzi, onHo
       for (let v = 0; v < liczba; v++) {
         const x = (v % (SEG_X + 1)) / SEG_X - 0.5;
         const y = 0.5 - Math.floor(v / (SEG_X + 1)) / SEG_Y;
-        // poza na pętli
+        // poza na spirali: punkt pętli opuszczony o `opad`
         const t = (((tc + znak * x * 2 * polSzer * skala) % 1) + 1) % 1;
         krzywa.getPointAt(t, tmp.v);
         const rx = tmp.v.x * f;
-        const ry = (tmp.v.y + y * WYS_KAFLA * skala) * f + przesunHero;
+        const ry = (tmp.v.y + y * WYS_KAFLA * skala) * f + przesunHero + opad;
         const rz = tmp.v.z * f;
         // poza w siatce
         const sx = gx + x * gw;
         const sy = gy + y * gh;
-        pos.setXYZ(v, rx + (sx - rx) * p, ry + (sy - ry) * p, rz * (1 - p));
+        pos.setXYZ(v, rx + (sx - rx) * bl, ry + (sy - ry) * bl, rz * (1 - bl));
       }
       pos.needsUpdate = true;
       mesh.geometry.computeBoundingSphere();

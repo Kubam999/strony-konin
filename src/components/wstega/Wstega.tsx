@@ -51,7 +51,7 @@ export default function Wstega({ hero }: Props) {
       // bo przy niskim hero sekcja realizacji jest widoczna już przy wczytaniu
       trigger: '#start',
       start: 'top top',
-      end: () => `+=${Math.round(innerHeight * 0.6)}`,
+      end: () => `+=${Math.round(innerHeight * 0.95)}`,
       onUpdate: (s) => {
         stan.postep = s.progress;
       },

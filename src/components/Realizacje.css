@@ -1,7 +1,16 @@
 .real {
-  position: relative;
-  z-index: 2; /* nad warstwą wstęgi „za” */
+  position: relative; /* bez własnego z-index: nagłówek i siatka układają się względem warstw sceny osobno */
   padding-block: var(--section);
+}
+.real__naglowek {
+  position: relative;
+  z-index: 4; /* nad obiema warstwami sceny: kafle schodzące po spirali przelatują pod tytułem */
+  pointer-events: none;
+}
+.real__filtr,
+.real__siatka {
+  position: relative;
+  z-index: 2; /* nad warstwą „za”, pod warstwą „przed” */
 }
 
 .real__filtr {

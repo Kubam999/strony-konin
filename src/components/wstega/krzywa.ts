@@ -3,6 +3,8 @@ import { CatmullRomCurve3, Euler, MathUtils, Vector3 } from 'three';
 export const SZER_KAFLA = 1.95;
 export const WYS_KAFLA = SZER_KAFLA * 0.625; // 16:10
 export const ODSTEP = 0.26;
+/** Wysokość środka pętli w scenie (oś, wokół której kafle schodzą po spirali) */
+export const SRODEK_Y = 0.05;
 
 /**
  * Pochylona pętla (elipsa) dopasowana długością do liczby kafli, żeby wstęga była
@@ -22,7 +24,7 @@ export function zbudujKrzywa(liczbaKafli: number): CatmullRomCurve3 {
   // Pętla leży poziomo jak taśmociąg, lekko uniesiona z tyłu: przód przechodzi nisko
   // przed nagłówkiem i blisko kamery, tył wyżej, za nagłówkiem i dalej.
   const obrot = new Euler(MathUtils.degToRad(-33), MathUtils.degToRad(6), MathUtils.degToRad(-6));
-  const srodek = new Vector3(0.7, 0.05, -3.6);
+  const srodek = new Vector3(0.7, SRODEK_Y, -3.6);
   const punkty: Vector3[] = [];
   const N = 64;
   for (let i = 0; i < N; i++) {

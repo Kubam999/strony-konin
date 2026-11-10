@@ -1,6 +1,5 @@
 .hero {
-  position: relative;
-  z-index: 2; /* nad warstwą wstęgi „za” (1), pod warstwą „przed” (3) */
+  position: relative; /* bez własnego z-index: nagłówek siedzi między warstwami sceny, tekst pod nim nad obiema */
   min-height: min(92svh, 840px);
   padding-top: calc(var(--nav-h) + var(--space-6));
   padding-bottom: var(--space-4);
